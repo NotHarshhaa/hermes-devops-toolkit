@@ -2,8 +2,6 @@
 
 **Focused, AI-assisted DevOps troubleshooting skills for [Hermes Agent](https://github.com/NousResearch/hermes-agent).**
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue)
-
 Hermes DevOps Toolkit is an open-source collection of small, reusable skills that help DevOps engineers diagnose common CI/CD, Kubernetes, and cloud-native problems faster.
 
 Instead of building another standalone AI agent or automation platform, this project extends the existing Hermes Agent with practical troubleshooting skills written in the standard `SKILL.md` format.
@@ -106,66 +104,7 @@ The expected approach is to copy a skill folder from `skills/` into your Hermes 
 
 In the meantime, see the official [Hermes Agent documentation](https://hermes-agent.nousresearch.com/docs/) to install and configure Hermes.
 
-## Repository Structure
-
-```text
-hermes-devops-toolkit/
-├── README.md
-├── LICENSE
-├── CONTRIBUTING.md
-├── skills/
-│   ├── pipeline-failure-translator/
-│   │   ├── SKILL.md
-│   │   ├── examples/
-│   │   └── tests/
-│   └── kube-explain/
-│       ├── SKILL.md
-│       ├── examples/
-│       └── tests/
-├── scripts/
-│   └── sanitize.py
-├── docs/
-│   ├── skill-authoring.md
-│   └── safety.md
-└── tests/
-    └── README.md
-```
-
-Each skill folder contains its `SKILL.md`, sanitized example inputs, and test scenarios (see [`docs/skill-authoring.md`](docs/skill-authoring.md)).
-
-## Roadmap
-
-### Phase 1: Foundation
-
-- [x] Establish the repository structure.
-- [x] Add the MIT `LICENSE` file.
-- [x] Document the development and contribution workflow.
-- [x] Define a consistent format for skill documentation and examples.
-
-### Phase 2: Pipeline Failure Translator
-
-- [x] Create the initial Hermes skill.
-- [x] Add Jenkins and GitHub Actions failure examples.
-- [x] Write log-analysis guidance and a structured diagnostic output format.
-- [ ] Test against representative failure logs.
-- [ ] Document installation and usage.
-
-### Phase 3: KubeExplain
-
-- [x] Create the Kubernetes troubleshooting skill.
-- [x] Cover `CrashLoopBackOff`, `ImagePullBackOff`, and `Pending`.
-- [x] Add sanitized diagnostic examples.
-- [ ] Test recommendations against known scenarios.
-- [x] Document safety and permission requirements.
-
-### Phase 4: Extensibility
-
-- [x] Establish conventions for adding new skills.
-- [x] Add reusable testing fixtures where appropriate.
-- [x] Document optional tool and script integrations.
-- [ ] Accept community contributions for additional DevOps and cloud problems.
-
-### Future Skill Ideas
+## Future Skill Ideas
 
 Possible additions, subject to community interest and available time:
 
