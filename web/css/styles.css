@@ -154,6 +154,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 16px);
   background: var(--hero-bg);
+  overflow-x: clip;
 }
 
 body {
@@ -164,6 +165,7 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 h1,
@@ -232,12 +234,12 @@ button {
    3. Layout primitives
    ------------------------------------------------------------ */
 .container {
-  width: min(1200px, 100% - 2.5rem);
+  width: min(1200px, 100% - 2rem);
   margin-inline: auto;
 }
 
 .container-narrow {
-  width: min(800px, 100% - 2.5rem);
+  width: min(800px, 100% - 2rem);
 }
 
 .section {
@@ -444,6 +446,9 @@ button {
     visibility: hidden;
     transition: transform 0.25s ease, visibility 0.25s;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-height: calc(100dvh - var(--nav-h));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav-toggle:checked ~ .site-nav {
@@ -592,12 +597,13 @@ button {
   display: flex;
   flex-direction: column;
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6.5vw, 5.4rem);
+  font-size: clamp(2.1rem, 7vw, 5.4rem);
   line-height: 0.94;
   letter-spacing: -0.025em;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: none;
   margin: 0 0 1.4rem;
+  word-break: break-word;
 }
 
 .hero-title span {
@@ -762,7 +768,7 @@ button {
    ------------------------------------------------------------ */
 .skill-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 1.6rem;
 }
 
@@ -1186,7 +1192,7 @@ button {
 
 .footer-wordmark {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 12vw, 10rem);
+  font-size: clamp(1.8rem, 8vw, 8.5rem);
   font-weight: 300;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -1196,20 +1202,17 @@ button {
   margin: 3rem 0 0;
   user-select: none;
   white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* ------------------------------------------------------------
    15. Breakpoints & reduced motion
    ------------------------------------------------------------ */
-@media (max-width: 1200px) {
-  .feature-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
   .feature-grid {
@@ -1217,16 +1220,23 @@ button {
   }
 
   .callout-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
+@media (max-width: 900px) {
   .footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
+  .section {
+    padding-block: clamp(3rem, 7vw, 4.5rem);
+  }
+
   .feature-grid,
+  .callout-grid,
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -1235,20 +1245,49 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .cta-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
   .cta-row .btn {
     width: 100%;
     justify-content: center;
+    min-height: 48px;
   }
 
   .tab-pills {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
+    gap: 0.25rem;
   }
 
   .tab-pill {
     text-align: center;
-    padding: 0.5rem 0.2rem;
+    padding: 0.55rem 0.2rem;
+    font-size: clamp(0.72rem, 3vw, 0.82rem);
+  }
+
+  .step {
+    gap: 1rem;
+  }
+
+  .step-num {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-name {
+    font-size: 0.78rem;
+  }
+
+  .eyebrow {
+    flex-wrap: wrap;
+    gap: 0.4rem;
   }
 }
 
