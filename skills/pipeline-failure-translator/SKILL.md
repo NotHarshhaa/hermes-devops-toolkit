@@ -1,12 +1,12 @@
 ---
 name: pipeline-failure-translator
-description: Analyzes CI/CD pipeline failure logs from Jenkins and GitHub Actions, identifies the failing stage and likely root causes, and suggests targeted remediation and verification steps. Use when the user shares a failed pipeline, job, or workflow build log and asks why it failed or how to fix it.
+description: Analyzes CI/CD pipeline failure logs from Jenkins, GitHub Actions, and GitLab CI/CD, identifies the failing stage and likely root causes, and suggests targeted remediation and verification steps. Use when the user shares a failed pipeline, job, or workflow build log and asks why it failed or how to fix it.
 ---
 
 # Pipeline Failure Translator
 
-You are helping a DevOps engineer understand why a CI/CD pipeline (Jenkins or GitHub
-Actions) failed, based on the evidence they provided.
+You are helping a DevOps engineer understand why a CI/CD pipeline (Jenkins, GitHub
+Actions, or GitLab CI/CD) failed, based on the evidence they provided.
 
 ## Core Principles
 
@@ -48,6 +48,25 @@ Actions) failed, based on the evidence they provided.
   - `fatal: couldn't find remote ref`, `authentication required` for SCM issues.
   - `returned a non-zero exit code` from docker/build steps.
 
+### GitLab CI/CD
+
+- GitLab organizes pipelines by stages and jobs. The failing job is marked as `failed`
+  in the pipeline view, and step boundaries appear around runner prep, `step_script`,
+  and after-script hooks.
+- Commands executed within `before_script` or `script` blocks appear prefixed with
+  `$ <command>` (or `Executing "step_script" stage of the job script...`).
+- Common signals:
+  - `ERROR: Job failed: exit code N` or `ERROR: Job failed: exit status N` pinpoints
+    the command that aborted the job.
+  - `Job failed (system failure): ...` indicates runner-level or infrastructure issues
+    (e.g., Docker daemon unreachable, runner disk full, cluster executor setup failure).
+  - `API error: pull access denied` / `repository does not exist or may require 'docker login'`
+    for container registry or image pull authentication problems.
+  - `ERROR: Uploading artifacts ... failed` / `missing artifact` for missing build
+    dependencies across stages or caching issues.
+  - `yaml invalid` or configuration linting errors reported when creating or triggering
+    the pipeline.
+
 General technique: locate the **first non-retried failure** in the chronology, then
 work forward — later errors are usually consequences of the first one.
 
@@ -71,8 +90,8 @@ work forward — later errors are usually consequences of the first one.
    *and* what would confirm or refute it.
 5. **Recommend remediation.** Concrete steps, ordered, smallest/safest first.
    Include runnable commands where possible, and mark their safety level:
-   - `[read-only]` — safe to run (e.g. `gh run view --log-failed`, `docker images`,
-     `git branch --show-current`).
+   - `[read-only]` — safe to run (e.g. `gh run view --log-failed`, `glab ci trace <job-id>`,
+     `docker images`, `git branch --show-current`).
    - `[state-changing]` — modifies the build/workspace (e.g. clearing a cache).
      Requires explicit user approval before running.
    - `[destructive/production]` — must never be run without explicit approval and
@@ -113,5 +132,6 @@ sections) instead of producing a full assessment.
 ## Examples
 
 See `examples/` for sanitized sample inputs this skill is designed to handle:
-GitHub Actions Docker-build failures and Jenkins test-stage failures. The `tests/`
-folder documents, for each example, the minimum a correct analysis must contain.
+GitHub Actions Docker-build failures, Jenkins test-stage failures, and related
+CI/CD logs including GitLab CI. The `tests/` folder documents, for each example,
+the minimum a correct analysis must contain.
