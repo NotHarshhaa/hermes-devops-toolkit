@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hermes DevOps Toolkit — DevOps troubleshooting skills for Hermes Agent</title>
+  <meta name="description" content="Hermes DevOps Toolkit is a planned open-source collection of focused, AI-assisted DevOps troubleshooting skills — pipeline failure translation and Kubernetes diagnosis — for Hermes Agent.">
+  <!-- GitHub Pages project site: replace <YOUR_GITHUB_USERNAME> after deploy -->
+  <link rel="canonical" href="https://<YOUR_GITHUB_USERNAME>.github.io/hermes-devops-toolkit/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Theme color follows the site's light/dark palette -->
+  <meta name="theme-color" content="#07070f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hermes DevOps Toolkit">
+  <meta property="og:title" content="Hermes DevOps Toolkit — DevOps troubleshooting skills for Hermes Agent">
+  <meta property="og:description" content="Focused, AI-assisted DevOps troubleshooting skills for Hermes Agent. Planned: Pipeline Failure Translator and KubeExplain. Early development.">
+  <meta property="og:url" content="https://<YOUR_GITHUB_USERNAME>.github.io/hermes-devops-toolkit/">
+  <meta property="og:image" content="assets/og-image.svg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hermes DevOps Toolkit — DevOps troubleshooting skills for Hermes Agent">
+  <meta name="twitter:description" content="Focused, AI-assisted DevOps troubleshooting skills for Hermes Agent. Planned: Pipeline Failure Translator and KubeExplain. Early development.">
+  <meta name="twitter:image" content="assets/og-image.svg">
+
+  <link rel="preload" href="assets/fonts/RulesGothicCnd-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============================= Header ============================= -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Hermes DevOps Toolkit — home">
+        <svg class="brand-mark" viewBox="0 0 64 64" width="28" height="28" role="img" aria-hidden="true" focusable="false">
+          <rect x="4" y="4" width="56" height="56" rx="14" class="mark-bg"></rect>
+          <path d="M14 34h10l5-12 7 20 5-10h9" fill="none" class="mark-pulse" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span class="brand-name">Hermes&nbsp;DevOps&nbsp;Toolkit</span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+      <label for="nav-toggle" class="nav-burger" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#features">Principles</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#requirements">Install</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="nav-cta" href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit" rel="noopener">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============================= Hero ============================= -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="chip chip-inverse">[ Early development ]</span> <span class="chip chip-ghost">[ MIT License ]</span></p>
+          <h1 class="hero-title">
+            <span>The DevOps toolkit</span>
+            <span>that explains</span>
+            <span>your failures</span>
+          </h1>
+          <p class="hero-sub">
+            A focused, open-source collection of AI-assisted troubleshooting skills for
+            <a href="https://github.com/NousResearch/hermes-agent" rel="noopener">Hermes Agent</a> —
+            built to cut the time between “it’s failing” and “here’s the fix”.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit" rel="noopener">View on GitHub</a>
+            <a class="btn btn-ghost" href="#skills">Explore skills</a>
+          </div>
+          <p class="hero-note">
+            <strong>Status:</strong> in early development. Both skills are planned, not released.
+          </p>
+        </div>
+
+        <!-- Terminal-style card: clearly labeled PLANNED example, no fake output -->
+        <aside class="terminal" aria-label="Planned example interaction">
+          <div class="terminal-bar">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+            <span class="terminal-title">diagnostics — example</span>
+            <span class="chip chip-planned">Planned</span>
+          </div>
+          <div class="terminal-body">
+            <pre class="codeblock"><code><span class="t-comment"># example prompt you would give Hermes Agent</span>
+<span class="t-prompt">$</span> <span class="t-user">Why did my GitHub Actions Docker build fail?</span>
+
+<span class="t-comment">$</span> <span class="t-user">My pod is in CrashLoopBackOff since the last
+  deploy. What should I check first?</span></code></pre>
+            <p class="terminal-caption">Example prompts only — no real output is shown, and no behavior is simulated.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Affiliation note, always visible -->
+    <div class="container">
+      <p class="affiliation-note">Independent community project, not affiliated with or endorsed by Nous Research.</p>
+    </div>
+
+    <!-- ============================= Skills ============================= -->
+    <section class="section" id="skills">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Planned skills</p>
+          <h2>Two focused skills to start</h2>
+          <p>Each skill is a folder with a <code>SKILL.md</code> of instructions that Hermes Agent loads when relevant. Small, modular, evidence-based.</p>
+        </header>
+
+        <div class="skill-grid">
+          <article class="skill-card">
+            <div class="skill-head">
+              <span class="mono-label">skills/pipeline-failure-translator</span>
+              <span class="chip chip-planned">Planned</span>
+            </div>
+            <h3>Pipeline Failure Translator</h3>
+            <p>Analyzes Jenkins and GitHub Actions failure logs, pinpoints the failing stage and the error that matters in the noise, explains likely root causes in plain language, and suggests fixes plus verification steps.</p>
+            <ul class="skill-points">
+              <li>Find the one error that actually failed the run</li>
+              <li>Separate observed errors from hypotheses</li>
+              <li>Recommend read-only checks before changes</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-head">
+              <span class="mono-label">skills/kube-explain</span>
+              <span class="chip chip-planned">Planned</span>
+            </div>
+            <h3>KubeExplain</h3>
+            <p>Explains common Kubernetes failure states — <code>CrashLoopBackOff</code>, <code>ImagePullBackOff</code>, <code>Pending</code> — from your <code>kubectl describe</code> output, events, and logs, then recommends the next most useful diagnostic command.</p>
+            <ul class="skill-points">
+              <li>Interpret describe output, events, and logs</li>
+              <li>Pull failures, crash loops, scheduling problems</li>
+              <li>Potential fixes and their risks</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= Principles / features ============================= -->
+    <section class="section section-alt" id="features">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Principles</p>
+          <h2>Small tools, honest diagnostics</h2>
+          <p>What the toolkit is designed around — one problem, one focused skill, one practical solution at a time.</p>
+        </header>
+
+        <ul class="feature-grid">
+          <li class="feature-card">
+            <span class="feature-num mono-label">#1 Diagnose</span>
+            <h3>Focus on the real error</h3>
+            <p>Logs are noise. Skills are designed to find the failing stage and the line that actually matters.</p>
+          </li>
+          <li class="feature-card">
+            <span class="feature-num mono-label">#2 Explain</span>
+            <h3>Plain-language causes</h3>
+            <p>Likely root causes in words engineers use — not opaque error codes left to interpretation.</p>
+          </li>
+          <li class="feature-card">
+            <span class="feature-num mono-label">#3 Verify</span>
+            <h3>Next steps you can run</h3>
+            <p>Targeted remediation plus the commands or tests that confirm the fix actually worked.</p>
+          </li>
+          <li class="feature-card">
+            <span class="feature-num mono-label">#4 Stay Safe</span>
+            <h3>Safe by default</h3>
+            <p>Read-only diagnostics first. Destructive or production-affecting actions require explicit approval.</p>
+          </li>
+          <li class="feature-card">
+            <span class="feature-num mono-label">#5 Extend</span>
+            <h3>Built to grow</h3>
+            <p>A consistent skill format makes it straightforward to add more DevOps and cloud skills.</p>
+          </li>
+          <li class="feature-card">
+            <span class="feature-num mono-label">#6 Contribute</span>
+            <h3>Community-driven</h3>
+            <p>Honest examples, reproducible scenarios, and contributions are welcome from day one.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================= How it works ============================= -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">How it works</p>
+          <h2>From evidence to answer in five steps</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div><h3>Invoke the skill</h3><p>You ask, or Hermes Agent selects the relevant skill for the problem at hand.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div><h3>Provide evidence</h3><p>Paste logs, command output, or configuration. Sanitized — see the safety notes below.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div><h3>Guided analysis</h3><p>Hermes uses its model and enabled tools, guided by the skill’s instructions.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">4</span>
+            <div><h3>Get the explanation</h3><p>The likely cause, clearly separated from inference, with recommended next steps.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">5</span>
+            <div><h3>You decide</h3><p>You review every suggestion and choose what to run. The skill assists; you stay in control.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================= Requirements / install ============================= -->
+    <section class="section section-alt" id="requirements">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Requirements</p>
+          <h2>What you’ll need</h2>
+        </header>
+
+        <!-- Pure-CSS tabs (radio inputs + :checked). No fake install commands. -->
+        <div class="tabs" role="presentation">
+          <input type="radio" id="tab-macos" name="os-tab" class="tab-input" checked>
+          <input type="radio" id="tab-linux" name="os-tab" class="tab-input">
+          <input type="radio" id="tab-windows" name="os-tab" class="tab-input">
+
+          <div class="tab-pills">
+            <label for="tab-macos" class="tab-pill"><span aria-hidden="true">:</span>macOS<span aria-hidden="true">:</span></label>
+            <label for="tab-linux" class="tab-pill"><span aria-hidden="true">:</span>Linux<span aria-hidden="true">:</span></label>
+            <label for="tab-windows" class="tab-pill"><span aria-hidden="true">:</span>Windows<span aria-hidden="true">:</span></label>
+          </div>
+
+          <div class="terminal tab-panels">
+            <div class="terminal-bar">
+              <span class="dot dot-r"></span>
+              <span class="dot dot-y"></span>
+              <span class="dot dot-g"></span>
+              <span class="terminal-title">requirements</span>
+              <span class="chip chip-planned">Install — coming soon</span>
+            </div>
+            <div class="tab-panel" id="panel-macos">
+              <pre class="codeblock"><code># Requirements (any platform, planned)
+# ─ Hermes Agent installed
+# ─ A model provider configured in Hermes
+# ─ Appropriate permissions for diagnostic tools
+
+$ <span class="t-comment"># install instructions: coming soon —</span>
+$ <span class="t-comment"># being verified against current Hermes skill conventions</span></code></pre>
+            </div>
+            <div class="tab-panel" id="panel-linux">
+              <pre class="codeblock"><code># Requirements (any platform, planned)
+# ─ Hermes Agent installed
+# ─ A model provider configured in Hermes
+# ─ Appropriate permissions for diagnostic tools
+
+$ <span class="t-comment"># install instructions: coming soon —</span>
+$ <span class="t-comment"># platform-specific notes will land with the first release</span></code></pre>
+            </div>
+            <div class="tab-panel" id="panel-windows">
+              <pre class="codeblock"><code># Requirements (any platform, planned)
+# ─ Hermes Agent installed
+# ─ A model provider configured in Hermes
+# ─ Appropriate permissions for diagnostic tools
+
+$ <span class="t-comment"># install instructions: coming soon —</span>
+$ <span class="t-comment"># Windows-specific notes will land with the first release</span></code></pre>
+            </div>
+            <p class="terminal-caption">The expected approach is copying a skill folder into your Hermes skills directory (<code>~/.hermes/skills/</code>). Exact commands will be documented and verified before the first release. Until then, see the <a href="https://hermes-agent.nousresearch.com/docs/" rel="noopener">Hermes Agent documentation</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ============================= Security & safety ============================= -->
+    <section class="section section-alt" id="safety">
+      <div class="container">
+        <div class="callout">
+          <h2><span aria-hidden="true" class="callout-icon">🛡</span> Security &amp; safety</h2>
+          <p>This toolkit is meant to assist engineers, not replace operational judgment.</p>
+          <div class="callout-grid">
+            <div>
+              <h3>Sanitize your logs</h3>
+              <p>CI/CD logs and <code>kubectl</code> output can contain secrets. Never commit credentials, tokens, or kubeconfig files. Sanitize before sharing with any model provider.</p>
+            </div>
+            <div>
+              <h3>Read-only by default</h3>
+              <p>Diagnosis should not change your system. Potentially destructive actions require your explicit approval, every time.</p>
+            </div>
+            <div>
+              <h3>Verify AI output</h3>
+              <p>AI-generated diagnoses can be wrong. Always verify critical findings against the real system state before acting on them.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= FAQ ============================= -->
+    <section class="section" id="faq">
+      <div class="container container-narrow">
+        <header class="section-head">
+          <p class="kicker">FAQ</p>
+          <h2>Honest answers first</h2>
+        </header>
+
+        <div class="faq">
+          <details>
+            <summary>Is it ready to use?</summary>
+            <p>No. The project is in early development and both skills are <strong>planned, not released</strong>. Everything described on this page is the design intent, not a finished feature.</p>
+          </details>
+          <details>
+            <summary>Does this work without Hermes Agent?</summary>
+            <p>The skills are written in the standard <code>SKILL.md</code> format for <a href="https://github.com/NousResearch/hermes-agent" rel="noopener">Hermes Agent</a>. Adding support for other agent runtimes is not planned right now.</p>
+          </details>
+          <details>
+            <summary>Is this affiliated with Nous Research?</summary>
+            <p>No. Independent community project, not affiliated with or endorsed by Nous Research. Hermes Agent is a product of Nous Research.</p>
+          </details>
+          <details>
+            <summary>Will it cost anything?</summary>
+            <p>The toolkit is MIT-licensed and will be free. You still pay for your own model provider usage through Hermes Agent.</p>
+          </details>
+          <details>
+            <summary>How can I contribute?</summary>
+            <p>Suggest a specific DevOps problem worth solving, add sanitized troubleshooting examples, improve diagnostic instructions, or write tests for known failure scenarios. See <code>CONTRIBUTING.md</code> in the repository.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================= Footer ============================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <section class="footer-col">
+          <h3>Project</h3>
+          <ul>
+            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit#readme" rel="noopener">README</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/LICENSE" rel="noopener">License (MIT)</a></li>
+          </ul>
+        </section>
+        <section class="footer-col">
+          <h3>Community</h3>
+          <ul>
+            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/issues" rel="noopener">Issues</a></li>
+            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a></li>
+            <li><a href="#safety">Security &amp; safety</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </section>
+        <section class="footer-col">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="https://github.com/NousResearch/hermes-agent" rel="noopener">Hermes Agent (GitHub)</a></li>
+            <li><a href="https://hermes-agent.nousresearch.com/docs/" rel="noopener">Hermes Agent docs</a></li>
+            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/docs/skill-authoring.md" rel="noopener">Skill authoring format</a></li>
+            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/docs/safety.md" rel="noopener">Safety guidelines</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="footer-legal">
+        <p>
+          © 2026 Hermes DevOps Toolkit contributors ·
+          <a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/LICENSE" rel="noopener">MIT License</a> ·
+          Independent community project, not affiliated with or endorsed by Nous Research.
+        </p>
+        <p class="tagline">One problem, one focused skill, one practical solution at a time.</p>
+      </div>
+
+      <p class="footer-wordmark" aria-hidden="true">HERMES DEVOPS TOOLKIT</p>
+    </div>
+  </footer>
+
+  <!-- Tiny optional enhancement: copy buttons on code blocks.
+       The page works fully without JS; buttons stay hidden. -->
+  <script defer>
+    (function () {
+      "use strict";
+      document.documentElement.classList.add("js");
+
+      function copyText(text, btn) {
+        var done = function () {
+          btn.textContent = "Copied";
+          setTimeout(function () { btn.textContent = "Copy"; }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () {});
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "absolute";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); done(); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+      }
+
+      function createButton(getText) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "copy-btn";
+        btn.textContent = "Copy";
+        btn.setAttribute("aria-label", "Copy code to clipboard");
+        btn.addEventListener("click", function () {
+          copyText(getText(), btn);
+        });
+        return btn;
+      }
+
+      document.querySelectorAll(".terminal").forEach(function (term) {
+        var bar = term.querySelector(".terminal-bar");
+        if (!bar) return;
+
+        var panels = term.querySelectorAll(".tab-panel");
+        if (panels.length > 0) {
+          bar.appendChild(createButton(function () {
+            for (var i = 0; i < panels.length; i++) {
+              if (panels[i].offsetParent !== null || window.getComputedStyle(panels[i]).display !== "none") {
+                return panels[i].innerText;
+              }
+            }
+            return panels[0].innerText;
+          }));
+        } else {
+          var block = term.querySelector(".codeblock");
+          if (block) {
+            bar.appendChild(createButton(function () {
+              return block.innerText;
+            }));
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
