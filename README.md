@@ -1,0 +1,226 @@
+# Hermes DevOps Toolkit
+
+**Focused, AI-assisted DevOps troubleshooting skills for [Hermes Agent](https://github.com/NousResearch/hermes-agent).**
+
+![License: MIT](https://img.shields.io/badge/license-MIT-blue)
+
+Hermes DevOps Toolkit is an open-source collection of small, reusable skills that help DevOps engineers diagnose common CI/CD, Kubernetes, and cloud-native problems faster.
+
+Instead of building another standalone AI agent or automation platform, this project extends the existing Hermes Agent with practical troubleshooting skills written in the standard `SKILL.md` format.
+
+The goal is simple: **spend less time investigating errors and more time fixing the actual problem.**
+
+> This is an independent community project and is not affiliated with or endorsed by Nous Research.
+
+## Why This Project?
+
+DevOps engineers regularly lose time searching through logs, documentation, configuration files, and command output.
+
+Common examples:
+
+- CI/CD pipelines failing with confusing error messages.
+- Kubernetes pods stuck in `CrashLoopBackOff`, `ImagePullBackOff`, or `Pending`.
+- Infrastructure configuration errors that are hard to interpret.
+- Repeated troubleshooting tasks that benefit from consistent diagnostic guidance.
+
+This toolkit tackles these with small, focused skills that can be developed, tested, and maintained independently.
+
+## Skills
+
+The toolkit currently ships two skills.
+
+| Skill | Description | Status |
+|---|---|---|
+| Pipeline Failure Translator | Analyzes CI/CD failure logs, identifies likely root causes, and suggests fixes. | Implemented |
+| KubeExplain | Explains common Kubernetes failures and recommends diagnostic steps. | Implemented |
+
+*Statuses will be updated as each skill is tested and released.*
+
+### 1. Pipeline Failure Translator
+
+**Understand why your pipeline failed without reading hundreds of log lines manually.**
+
+Capabilities:
+
+- Analyze Jenkins and GitHub Actions failure logs.
+- Identify the relevant error messages and failing stage.
+- Explain likely root causes in plain language.
+- Suggest targeted remediation steps.
+- Recommend commands or tests to verify the fix.
+- Clearly separate observed errors from hypotheses.
+
+Example use case: a GitHub Actions workflow fails during a Docker image build. The skill examines the supplied logs, identifies the relevant build error, explains its likely cause, and suggests how to verify the fix.
+
+### 2. KubeExplain
+
+**Turn confusing Kubernetes errors into clear troubleshooting steps.**
+
+Capabilities:
+
+- Explain common pod states and failure conditions.
+- Interpret `kubectl describe` output, pod events, and container logs.
+- Investigate image-pull failures, crash loops, and scheduling problems.
+- Recommend the next most useful diagnostic command.
+- Explain potential fixes and their risks.
+- Base explanations on the evidence provided, not generic guesses.
+
+Example use case: a pod enters `CrashLoopBackOff`. The skill examines the available diagnostic output, identifies likely causes, and recommends next steps to investigate.
+
+## Design Principles
+
+- **Small and focused:** each skill solves one specific engineering problem.
+- **Hermes-native:** reuse Hermes Agent capabilities instead of rebuilding the agent runtime.
+- **Modular:** skills can be developed, tested, and improved independently.
+- **Practical:** prioritize real-world troubleshooting workflows.
+- **Evidence-based:** separate observed facts from inferred causes.
+- **Safe by default:** prefer read-only diagnostics and require explicit approval for potentially destructive actions.
+- **Extensible:** make it easy to add more DevOps and cloud skills.
+- **Community-driven:** welcome contributions, reproducible examples, and improvements.
+
+## How It Works
+
+Each skill is a folder containing a `SKILL.md` file with instructions that Hermes Agent loads when the skill is relevant.
+
+1. You invoke a skill, or Hermes selects a relevant one.
+2. You provide logs, command output, configuration, or other diagnostic evidence.
+3. Hermes uses its configured model and enabled tools to analyze the problem, guided by the skill's instructions.
+4. The skill guides Hermes to explain the likely cause and recommend next steps.
+5. You review the recommendations and decide what to run.
+
+Actual behavior depends on your Hermes version, configured model, enabled tools, and permissions.
+
+## Requirements
+
+- A working installation of [Hermes Agent](https://github.com/NousResearch/hermes-agent).
+- A model provider configured in Hermes.
+- Python or other local tooling, only if a particular skill requires it.
+- Appropriate permissions for any diagnostic tools you choose to enable.
+
+Individual skills may list additional requirements in their own directories.
+
+## Installation
+
+Installation instructions will be finalized after the first skills are implemented and tested against the current Hermes skill conventions.
+
+The expected approach is to copy a skill folder from `skills/` into your Hermes skills directory (`~/.hermes/skills/`), or to add this repository as a skill source using Hermes' `skills tap` command. Exact commands will be documented and verified before the first release.
+
+In the meantime, see the official [Hermes Agent documentation](https://hermes-agent.nousresearch.com/docs/) to install and configure Hermes.
+
+## Repository Structure
+
+```text
+hermes-devops-toolkit/
+├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
+├── skills/
+│   ├── pipeline-failure-translator/
+│   │   ├── SKILL.md
+│   │   ├── examples/
+│   │   └── tests/
+│   └── kube-explain/
+│       ├── SKILL.md
+│       ├── examples/
+│       └── tests/
+├── scripts/
+│   └── sanitize.py
+├── docs/
+│   ├── skill-authoring.md
+│   └── safety.md
+└── tests/
+    └── README.md
+```
+
+Each skill folder contains its `SKILL.md`, sanitized example inputs, and test scenarios (see [`docs/skill-authoring.md`](docs/skill-authoring.md)).
+
+## Roadmap
+
+### Phase 1: Foundation
+
+- [x] Establish the repository structure.
+- [x] Add the MIT `LICENSE` file.
+- [x] Document the development and contribution workflow.
+- [x] Define a consistent format for skill documentation and examples.
+
+### Phase 2: Pipeline Failure Translator
+
+- [x] Create the initial Hermes skill.
+- [x] Add Jenkins and GitHub Actions failure examples.
+- [x] Write log-analysis guidance and a structured diagnostic output format.
+- [ ] Test against representative failure logs.
+- [ ] Document installation and usage.
+
+### Phase 3: KubeExplain
+
+- [x] Create the Kubernetes troubleshooting skill.
+- [x] Cover `CrashLoopBackOff`, `ImagePullBackOff`, and `Pending`.
+- [x] Add sanitized diagnostic examples.
+- [ ] Test recommendations against known scenarios.
+- [x] Document safety and permission requirements.
+
+### Phase 4: Extensibility
+
+- [x] Establish conventions for adding new skills.
+- [x] Add reusable testing fixtures where appropriate.
+- [x] Document optional tool and script integrations.
+- [ ] Accept community contributions for additional DevOps and cloud problems.
+
+### Future Skill Ideas
+
+Possible additions, subject to community interest and available time:
+
+- Terraform Plan Explainer
+- Docker Cleanup Advisor
+- DiskPressure Detective
+- KubeManifest Doctor
+- ServiceFailure Assistant
+- Cloud Configuration Troubleshooter
+- Ansible Failure Analyzer
+- Container Build Failure Assistant
+
+These are ideas for exploration, not committed features.
+
+## Contributing
+
+Contributions are welcome! You can help by:
+
+- Suggesting a specific DevOps problem worth solving.
+- Adding reproducible, sanitized troubleshooting examples.
+- Improving diagnostic instructions.
+- Writing tests for known failure scenarios.
+- Reporting incorrect or unsafe recommendations.
+- Proposing new, self-contained skills.
+
+Before contributing a new skill, please check existing issues and discussions to avoid duplicate work, and see [`CONTRIBUTING.md`](CONTRIBUTING.md) for detailed guidelines.
+
+## Security and Safety
+
+This toolkit is meant to assist engineers, not replace operational judgment.
+
+- Never commit credentials, tokens, kubeconfig files, or unsanitized logs.
+- CI/CD logs and `kubectl` output can contain secrets. Sanitize them before sharing with any external model provider.
+- Prefer read-only access for diagnostics.
+- Review suggested commands before running them.
+- Require explicit approval for destructive operations or production changes.
+- Validate recommendations in a safe environment when appropriate.
+
+AI-generated diagnoses can be wrong. Always verify critical findings against the actual system state.
+
+## Project Philosophy
+
+A useful DevOps tool does not need to be a massive platform. Sometimes a small skill that reliably explains a pipeline failure or helps diagnose a Kubernetes problem is worth more than a complex system that tries to automate everything.
+
+**One problem, one focused skill, one practical solution at a time.**
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent) by Nous Research, the underlying agent runtime.
+- The open-source DevOps, Cloud Native, and SRE communities.
+
+---
+
+**Built for engineers who want to troubleshoot smarter, not maintain another platform.**
