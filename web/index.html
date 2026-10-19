@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hermes DevOps Toolkit — DevOps troubleshooting skills for Hermes Agent</title>
-  <meta name="description" content="Hermes DevOps Toolkit is a planned open-source collection of focused, AI-assisted DevOps troubleshooting skills — pipeline failure translation and Kubernetes diagnosis — for Hermes Agent.">
-  <!-- GitHub Pages project site: replace <YOUR_GITHUB_USERNAME> after deploy -->
-  <link rel="canonical" href="https://<YOUR_GITHUB_USERNAME>.github.io/hermes-devops-toolkit/">
+  <meta name="description"
+    content="Hermes DevOps Toolkit is a planned open-source collection of focused, AI-assisted DevOps troubleshooting skills — pipeline failure translation and Kubernetes diagnosis — for Hermes Agent.">
+  <link rel="canonical" href="https://notharshhaa.github.io/hermes-devops-toolkit/">
   <meta name="robots" content="index, follow">
 
   <!-- Theme color follows the site's light/dark palette -->
@@ -17,21 +18,25 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Hermes DevOps Toolkit">
   <meta property="og:title" content="Hermes DevOps Toolkit — DevOps troubleshooting skills for Hermes Agent">
-  <meta property="og:description" content="Focused, AI-assisted DevOps troubleshooting skills for Hermes Agent. Planned: Pipeline Failure Translator and KubeExplain. Early development.">
-  <meta property="og:url" content="https://<YOUR_GITHUB_USERNAME>.github.io/hermes-devops-toolkit/">
+  <meta property="og:description"
+    content="Focused, AI-assisted DevOps troubleshooting skills for Hermes Agent. Planned: Pipeline Failure Translator and KubeExplain. Early development.">
+  <meta property="og:url" content="https://notharshhaa.github.io/hermes-devops-toolkit/">
   <meta property="og:image" content="assets/og-image.svg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hermes DevOps Toolkit — DevOps troubleshooting skills for Hermes Agent">
-  <meta name="twitter:description" content="Focused, AI-assisted DevOps troubleshooting skills for Hermes Agent. Planned: Pipeline Failure Translator and KubeExplain. Early development.">
+  <meta name="twitter:description"
+    content="Focused, AI-assisted DevOps troubleshooting skills for Hermes Agent. Planned: Pipeline Failure Translator and KubeExplain. Early development.">
   <meta name="twitter:image" content="assets/og-image.svg">
 
   <link rel="preload" href="assets/fonts/RulesGothicCnd-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
@@ -39,10 +44,9 @@
   <header class="site-header">
     <div class="container nav-inner">
       <a class="brand" href="#top" aria-label="Hermes DevOps Toolkit — home">
-        <svg class="brand-mark" viewBox="0 0 64 64" width="28" height="28" role="img" aria-hidden="true" focusable="false">
-          <rect x="4" y="4" width="56" height="56" rx="14" class="mark-bg"></rect>
-          <path d="M14 34h10l5-12 7 20 5-10h9" fill="none" class="mark-pulse" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/nous-badge.svg" alt="Nous Research badge" class="brand-badge" width="27" height="38">
+        </span>
         <span class="brand-name">Hermes&nbsp;DevOps&nbsp;Toolkit</span>
       </a>
 
@@ -58,7 +62,8 @@
           <li><a href="#how-it-works">How it works</a></li>
           <li><a href="#requirements">Install</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a class="nav-cta" href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit" rel="noopener">GitHub</a></li>
+          <li><a class="nav-cta" href="https://github.com/NotHarshhaa/hermes-devops-toolkit" rel="noopener">GitHub</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -69,7 +74,8 @@
     <section class="hero" id="top">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="chip chip-inverse">[ Early development ]</span> <span class="chip chip-ghost">[ MIT License ]</span></p>
+          <p class="eyebrow"><span class="chip chip-inverse">[ Early development ]</span> <span
+              class="chip chip-ghost">[ MIT License ]</span></p>
           <h1 class="hero-title">
             <span>The DevOps toolkit</span>
             <span>that explains</span>
@@ -81,30 +87,185 @@
             built to cut the time between “it’s failing” and “here’s the fix”.
           </p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit" rel="noopener">View on GitHub</a>
+            <a class="btn btn-primary" href="https://github.com/NotHarshhaa/hermes-devops-toolkit" rel="noopener">View
+              on GitHub</a>
             <a class="btn btn-ghost" href="#skills">Explore skills</a>
           </div>
           <p class="hero-note">
-            <strong>Status:</strong> in early development. Both skills are planned, not released.
+            <strong>Status:</strong> six troubleshooting skills implemented in the toolkit.
           </p>
         </div>
 
-        <!-- Terminal-style card: clearly labeled PLANNED example, no fake output -->
-        <aside class="terminal" aria-label="Planned example interaction">
+        <!-- Terminal-style card: Interactive DevOps Diagnostic Preview -->
+        <aside class="terminal hero-terminal" aria-label="Interactive DevOps diagnostic preview">
           <div class="terminal-bar">
-            <span class="dot dot-r"></span>
-            <span class="dot dot-y"></span>
-            <span class="dot dot-g"></span>
-            <span class="terminal-title">diagnostics — example</span>
-            <span class="chip chip-planned">Planned</span>
+            <div class="terminal-dots">
+              <span class="dot dot-r" title="Close"></span>
+              <span class="dot dot-y" title="Minimize"></span>
+              <span class="dot dot-g" title="Maximize"></span>
+            </div>
+            <span class="terminal-title">hermes-agent &bull; live-diagnostics</span>
+            <span class="terminal-live-chip"><span class="live-dot"></span>ACTIVE</span>
           </div>
-          <div class="terminal-body">
-            <pre class="codeblock"><code><span class="t-comment"># example prompt you would give Hermes Agent</span>
-<span class="t-prompt">$</span> <span class="t-user">Why did my GitHub Actions Docker build fail?</span>
 
-<span class="t-comment">$</span> <span class="t-user">My pod is in CrashLoopBackOff since the last
-  deploy. What should I check first?</span></code></pre>
-            <p class="terminal-caption">Example prompts only — no real output is shown, and no behavior is simulated.</p>
+          <!-- Scenario Switcher Tabs -->
+          <div class="hero-term-nav" role="tablist" aria-label="Diagnostic scenario switcher">
+            <button type="button" class="term-tab active" data-target="sc-k8s" role="tab" aria-selected="true">
+              <span class="tab-badge">K8s</span>CrashLoop
+            </button>
+            <button type="button" class="term-tab" data-target="sc-ci" role="tab" aria-selected="false">
+              <span class="tab-badge">CI/CD</span>Docker Build
+            </button>
+            <button type="button" class="term-tab" data-target="sc-tf" role="tab" aria-selected="false">
+              <span class="tab-badge">Terraform</span>Blast Radius
+            </button>
+            <button type="button" class="term-tab" data-target="sc-docker" role="tab" aria-selected="false">
+              <span class="tab-badge">Docker</span>Disk Space
+            </button>
+          </div>
+
+          <div class="terminal-body hero-term-body">
+            <!-- Scenario 1: Kubernetes CrashLoop -->
+            <div class="hero-scenario active" id="sc-k8s">
+              <div class="term-line term-prompt-line">
+                <span class="term-prompt">➜</span>
+                <span class="term-cmd">hermes "Why is payments-api pod in CrashLoopBackOff?"</span>
+              </div>
+              <div class="term-response">
+                <div class="term-res-header">
+                  <span class="agent-tag">HERMES AGENT</span>
+                  <span class="skill-tag">skill: kube-explain</span>
+                  <span class="confidence-badge">High Confidence</span>
+                </div>
+                <div class="term-res-content">
+                  <div class="diag-item">
+                    <span class="diag-label">OBSERVED</span>
+                    <span class="diag-val">payments/payments-api-7d9f6c8b5 &bull; Exit 137 (OOMKilled)</span>
+                  </div>
+                  <div class="diag-item">
+                    <span class="diag-label">ROOT CAUSE</span>
+                    <span class="diag-val highlight-warn">Cache memory growth exceeded 512Mi container limit</span>
+                  </div>
+                  <div class="diag-item action-item">
+                    <span class="diag-label">NEXT STEP</span>
+                    <code class="term-code">kubectl logs payments-api-7d9f6c8b5 --previous -n payments</code>
+                    <span class="safety-chip chip-readonly">[read-only]</span>
+                  </div>
+                  <div class="diag-item fix-item">
+                    <span class="diag-label">RECOMMENDED FIX</span>
+                    <span class="diag-val">Raise limit to 1Gi in deployment spec or cap cache size</span>
+                    <span class="safety-chip chip-approval">[needs approval]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 2: CI/CD Build Failure -->
+            <div class="hero-scenario" id="sc-ci">
+              <div class="term-line term-prompt-line">
+                <span class="term-prompt">➜</span>
+                <span class="term-cmd">hermes "Analyze GitHub Actions workflow failure in run #1482"</span>
+              </div>
+              <div class="term-response">
+                <div class="term-res-header">
+                  <span class="agent-tag">HERMES AGENT</span>
+                  <span class="skill-tag">skill: pipeline-failure-translator</span>
+                  <span class="confidence-badge">High Confidence</span>
+                </div>
+                <div class="term-res-content">
+                  <div class="diag-item">
+                    <span class="diag-label">FAILING STAGE</span>
+                    <span class="diag-val">Job: build / Step: "Build and push image" (line 42)</span>
+                  </div>
+                  <div class="diag-item">
+                    <span class="diag-label">ROOT CAUSE</span>
+                    <span class="diag-val highlight-warn">No matching distribution for requests==2.99.0 (invalid
+                      pin)</span>
+                  </div>
+                  <div class="diag-item action-item">
+                    <span class="diag-label">VERIFY</span>
+                    <code class="term-code">pip index versions requests</code>
+                    <span class="safety-chip chip-readonly">[read-only]</span>
+                  </div>
+                  <div class="diag-item fix-item">
+                    <span class="diag-label">REMEDIATION</span>
+                    <span class="diag-val">Update requirements.txt to requests&gt;=2.31.0</span>
+                    <span class="safety-chip chip-approval">[needs approval]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 3: Terraform Plan Blast Radius -->
+            <div class="hero-scenario" id="sc-tf">
+              <div class="term-line term-prompt-line">
+                <span class="term-prompt">➜</span>
+                <span class="term-cmd">hermes "Review terraform plan for staging database migration"</span>
+              </div>
+              <div class="term-response">
+                <div class="term-res-header">
+                  <span class="agent-tag">HERMES AGENT</span>
+                  <span class="skill-tag">skill: terraform-plan-explainer</span>
+                  <span class="confidence-badge badge-danger">CRITICAL RISK</span>
+                </div>
+                <div class="term-res-content">
+                  <div class="diag-item">
+                    <span class="diag-label">PLANNED ACTION</span>
+                    <span class="diag-val highlight-danger">module.db.aws_db_instance.postgres (-/+) REPLACED</span>
+                  </div>
+                  <div class="diag-item">
+                    <span class="diag-label">TRIGGER</span>
+                    <span class="diag-val">db_subnet_group_name change # forces replacement</span>
+                  </div>
+                  <div class="diag-item">
+                    <span class="diag-label">BLAST RADIUS</span>
+                    <span class="diag-val highlight-warn">Destroys 40GB RDS database &bull; Potential data loss &amp;
+                      endpoint recreation</span>
+                  </div>
+                  <div class="diag-item action-item">
+                    <span class="diag-label">PRE-APPLY CHECK</span>
+                    <code class="term-code">aws rds describe-db-snapshots --db-instance-identifier stage-postgres</code>
+                    <span class="safety-chip chip-readonly">[read-only]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 4: Docker Cleanup Advisor -->
+            <div class="hero-scenario" id="sc-docker">
+              <div class="term-line term-prompt-line">
+                <span class="term-prompt">➜</span>
+                <span class="term-cmd">hermes "Runner disk is 98% full. What can I safely prune?"</span>
+              </div>
+              <div class="term-response">
+                <div class="term-res-header">
+                  <span class="agent-tag">HERMES AGENT</span>
+                  <span class="skill-tag">skill: docker-cleanup-advisor</span>
+                  <span class="confidence-badge">87GB Reclaimable</span>
+                </div>
+                <div class="term-res-content">
+                  <div class="diag-item">
+                    <span class="diag-label">STORAGE HOG</span>
+                    <span class="diag-val">Buildx cache (48.9GB) + Dangling images (38.1GB)</span>
+                  </div>
+                  <div class="diag-item action-item">
+                    <span class="diag-label">SAFE PRUNE</span>
+                    <code class="term-code">docker builder prune -f &amp;&amp; docker image prune -f</code>
+                    <span class="safety-chip chip-approval">[needs approval]</span>
+                  </div>
+                  <div class="diag-item">
+                    <span class="diag-label">GUARDRAIL</span>
+                    <span class="diag-val highlight-safe">Preserved 2 active database volumes from destruction</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive terminal status footer -->
+            <div class="hero-term-footer">
+              <span class="term-status"><span class="cursor-blink">▋</span> Ready for prompt</span>
+              <span class="term-hint">Click tabs above to switch scenario</span>
+            </div>
           </div>
         </aside>
       </div>
@@ -121,7 +282,8 @@
         <header class="section-head">
           <p class="kicker">Available Skills</p>
           <h2>DevOps Troubleshooting Skills</h2>
-          <p>Each skill is a folder with a <code>SKILL.md</code> of instructions that Hermes Agent loads when relevant. Small, modular, evidence-based.</p>
+          <p>Each skill is a folder with a <code>SKILL.md</code> of instructions that Hermes Agent loads when relevant.
+            Small, modular, evidence-based.</p>
         </header>
 
         <div class="skill-grid">
@@ -131,7 +293,9 @@
               <span class="chip chip-planned">Implemented</span>
             </div>
             <h3>Pipeline Failure Translator</h3>
-            <p>Analyzes Jenkins and GitHub Actions failure logs, pinpoints the failing stage and the error that matters in the noise, explains likely root causes in plain language, and suggests fixes plus verification steps.</p>
+            <p>Analyzes Jenkins and GitHub Actions failure logs, pinpoints the failing stage and the error that matters
+              in the noise, explains likely root causes in plain language, and suggests fixes plus verification steps.
+            </p>
             <ul class="skill-points">
               <li>Find the one error that actually failed the run</li>
               <li>Separate observed errors from hypotheses</li>
@@ -145,7 +309,10 @@
               <span class="chip chip-planned">Implemented</span>
             </div>
             <h3>KubeExplain</h3>
-            <p>Explains common Kubernetes failure states — <code>CrashLoopBackOff</code>, <code>ImagePullBackOff</code>, <code>Pending</code> — from your <code>kubectl describe</code> output, events, and logs, then recommends the next most useful diagnostic command.</p>
+            <p>Explains common Kubernetes failure states — <code>CrashLoopBackOff</code>, <code>ImagePullBackOff</code>,
+              <code>Pending</code> — from your <code>kubectl describe</code> output, events, and logs, then recommends
+              the next most useful diagnostic command.
+            </p>
             <ul class="skill-points">
               <li>Interpret describe output, events, and logs</li>
               <li>Pull failures, crash loops, scheduling problems</li>
@@ -159,7 +326,9 @@
               <span class="chip chip-planned">Implemented</span>
             </div>
             <h3>Terraform Plan Explainer</h3>
-            <p>Analyzes <code>terraform plan</code> output, identifies destructive changes and forced replacements (<code>-/+</code>), evaluates blast radius on databases and networks, and recommends safe pre-apply verification checks.</p>
+            <p>Analyzes <code>terraform plan</code> output, identifies destructive changes and forced replacements
+              (<code>-/+</code>), evaluates blast radius on databases and networks, and recommends safe pre-apply
+              verification checks.</p>
             <ul class="skill-points">
               <li>Detect <code>forces replacement</code> triggers</li>
               <li>Stateful resource loss &amp; downtime assessment</li>
@@ -173,7 +342,9 @@
               <span class="chip chip-planned">Implemented</span>
             </div>
             <h3>Docker Cleanup Advisor</h3>
-            <p>Analyzes Docker storage breakdown from <code>docker system df</code>, prioritizing high-yield zero-risk build cache and dangling image reclamation while protecting persistent database volumes from blind pruning.</p>
+            <p>Analyzes Docker storage breakdown from <code>docker system df</code>, prioritizing high-yield zero-risk
+              build cache and dangling image reclamation while protecting persistent database volumes from blind
+              pruning.</p>
             <ul class="skill-points">
               <li>Reclaim 10GB–100GB+ without service disruption</li>
               <li>Safeguard named &amp; persistent database volumes</li>
@@ -187,7 +358,9 @@
               <span class="chip chip-planned">Implemented</span>
             </div>
             <h3>DiskPressure Detective</h3>
-            <p>Diagnoses Kubernetes node <code>DiskPressure=True</code> conditions and ephemeral storage evictions. Differentiates root <code>nodefs</code>, runtime <code>imagefs</code>, and runaway pod container logs or temporary storage.</p>
+            <p>Diagnoses Kubernetes node <code>DiskPressure=True</code> conditions and ephemeral storage evictions.
+              Differentiates root <code>nodefs</code>, runtime <code>imagefs</code>, and runaway pod container logs or
+              temporary storage.</p>
             <ul class="skill-points">
               <li>Differentiate nodefs vs imagefs threshold breaches</li>
               <li>Pinpoint runaway pod ephemeral storage &amp; logs</li>
@@ -201,7 +374,9 @@
               <span class="chip chip-planned">Implemented</span>
             </div>
             <h3>KubeManifest Doctor</h3>
-            <p>Audits Kubernetes YAML manifests and Helm outputs for production readiness: flags missing CPU/memory limits, insecure root execution, probe anti-patterns, selector mismatches, and deprecated API versions.</p>
+            <p>Audits Kubernetes YAML manifests and Helm outputs for production readiness: flags missing CPU/memory
+              limits, insecure root execution, probe anti-patterns, selector mismatches, and deprecated API versions.
+            </p>
             <ul class="skill-points">
               <li>Identify BestEffort QoS &amp; missing limits</li>
               <li>Catch database checks in liveness probes</li>
@@ -267,23 +442,38 @@
         <ol class="steps">
           <li class="step">
             <span class="step-num" aria-hidden="true">1</span>
-            <div><h3>Invoke the skill</h3><p>You ask, or Hermes Agent selects the relevant skill for the problem at hand.</p></div>
+            <div>
+              <h3>Invoke the skill</h3>
+              <p>You ask, or Hermes Agent selects the relevant skill for the problem at hand.</p>
+            </div>
           </li>
           <li class="step">
             <span class="step-num" aria-hidden="true">2</span>
-            <div><h3>Provide evidence</h3><p>Paste logs, command output, or configuration. Sanitized — see the safety notes below.</p></div>
+            <div>
+              <h3>Provide evidence</h3>
+              <p>Paste logs, command output, or configuration. Sanitized — see the safety notes below.</p>
+            </div>
           </li>
           <li class="step">
             <span class="step-num" aria-hidden="true">3</span>
-            <div><h3>Guided analysis</h3><p>Hermes uses its model and enabled tools, guided by the skill’s instructions.</p></div>
+            <div>
+              <h3>Guided analysis</h3>
+              <p>Hermes uses its model and enabled tools, guided by the skill’s instructions.</p>
+            </div>
           </li>
           <li class="step">
             <span class="step-num" aria-hidden="true">4</span>
-            <div><h3>Get the explanation</h3><p>The likely cause, clearly separated from inference, with recommended next steps.</p></div>
+            <div>
+              <h3>Get the explanation</h3>
+              <p>The likely cause, clearly separated from inference, with recommended next steps.</p>
+            </div>
           </li>
           <li class="step">
             <span class="step-num" aria-hidden="true">5</span>
-            <div><h3>You decide</h3><p>You review every suggestion and choose what to run. The skill assists; you stay in control.</p></div>
+            <div>
+              <h3>You decide</h3>
+              <p>You review every suggestion and choose what to run. The skill assists; you stay in control.</p>
+            </div>
           </li>
         </ol>
       </div>
@@ -293,58 +483,129 @@
     <section class="section section-alt" id="requirements">
       <div class="container">
         <header class="section-head">
-          <p class="kicker">Requirements</p>
-          <h2>What you’ll need</h2>
+          <p class="kicker">Quickstart &amp; Setup</p>
+          <h2>Requirements &amp; Installation</h2>
+          <p>Everything you need to get Hermes DevOps skills running in your environment.</p>
         </header>
 
-        <!-- Pure-CSS tabs (radio inputs + :checked). No fake install commands. -->
+        <!-- Prerequisites cards -->
+        <div class="prereq-grid">
+          <div class="prereq-card">
+            <span class="prereq-icon">⚡</span>
+            <h3>Hermes Agent CLI</h3>
+            <p>A working installation of <a href="https://github.com/NousResearch/hermes-agent" rel="noopener"
+                target="_blank">Hermes Agent</a> installed and accessible in your shell environment.</p>
+          </div>
+          <div class="prereq-card">
+            <span class="prereq-icon">🧠</span>
+            <h3>Configured Model</h3>
+            <p>Any LLM provider supported by Hermes (OpenAI, Anthropic, OpenRouter, or local models via Ollama/vLLM).
+            </p>
+          </div>
+          <div class="prereq-card">
+            <span class="prereq-icon">🛡</span>
+            <h3>Read-Only Credentials</h3>
+            <p>Access to your existing diagnostic CLI tools (<code>kubectl</code>, <code>docker</code>,
+              <code>terraform</code>) with read-only permissions.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pure-CSS tabs (radio inputs + :checked) with dark terminal -->
         <div class="tabs" role="presentation">
           <input type="radio" id="tab-macos" name="os-tab" class="tab-input" checked>
           <input type="radio" id="tab-linux" name="os-tab" class="tab-input">
           <input type="radio" id="tab-windows" name="os-tab" class="tab-input">
 
-          <div class="tab-pills">
-            <label for="tab-macos" class="tab-pill"><span aria-hidden="true">:</span>macOS<span aria-hidden="true">:</span></label>
-            <label for="tab-linux" class="tab-pill"><span aria-hidden="true">:</span>Linux<span aria-hidden="true">:</span></label>
-            <label for="tab-windows" class="tab-pill"><span aria-hidden="true">:</span>Windows<span aria-hidden="true">:</span></label>
+          <div class="tab-pills" role="tablist" aria-label="Operating system selection">
+            <label for="tab-macos" class="tab-pill" role="tab">
+              <svg class="tab-os-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.16c.65-.79 1.09-1.89.97-2.99-1 .04-2.13.67-2.8 1.45-.58.67-1.1 1.78-.96 2.85 1.11.09 2.16-.57 2.79-1.31z" />
+              </svg>
+              macOS
+            </label>
+            <label for="tab-linux" class="tab-pill" role="tab">
+              <svg class="tab-os-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="M12.5 2c-3.1 0-4.5 2.1-4.5 4.5 0 1.2.4 2.8.9 3.8-.4.3-.9.7-1.2 1.3-.6 1.1-.4 2.5.3 3.4-.1.4-.2.8-.2 1.2 0 2.2 2.1 4.8 5.7 4.8s5.7-2.6 5.7-4.8c0-.4-.1-.8-.2-1.2.7-.9.9-2.3.3-3.4-.3-.6-.8-1-1.2-1.3.5-1 .9-2.6.9-3.8 0-2.4-1.4-4.5-4.5-4.5h-.1z" />
+              </svg>
+              Linux
+            </label>
+            <label for="tab-windows" class="tab-pill" role="tab">
+              <svg class="tab-os-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.901-1.8" />
+              </svg>
+              Windows
+            </label>
           </div>
 
-          <div class="terminal tab-panels">
+          <div class="terminal tab-panels install-terminal">
             <div class="terminal-bar">
-              <span class="dot dot-r"></span>
-              <span class="dot dot-y"></span>
-              <span class="dot dot-g"></span>
-              <span class="terminal-title">requirements</span>
-              <span class="chip chip-planned">Install — coming soon</span>
+              <div class="terminal-dots">
+                <span class="dot dot-r" title="Close"></span>
+                <span class="dot dot-y" title="Minimize"></span>
+                <span class="dot dot-g" title="Maximize"></span>
+              </div>
+              <span class="terminal-title">bash ~ hermes-skills-setup</span>
+              <span class="chip chip-planned chip-active">Ready to install</span>
             </div>
+
             <div class="tab-panel" id="panel-macos">
-              <pre class="codeblock"><code># Requirements (any platform, planned)
-# ─ Hermes Agent installed
-# ─ A model provider configured in Hermes
-# ─ Appropriate permissions for diagnostic tools
+              <pre
+                class="codeblock"><code><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository</span>
+<span class="t-prompt">$</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git
+<span class="t-prompt">$</span> cd hermes-devops-toolkit
 
-$ <span class="t-comment"># install instructions: coming soon —</span>
-$ <span class="t-comment"># being verified against current Hermes skill conventions</span></code></pre>
+<span class="t-comment"># 2. Copy the skills into your local Hermes skills directory</span>
+<span class="t-prompt">$</span> mkdir -p ~/.hermes/skills
+<span class="t-prompt">$</span> cp -r skills/* ~/.hermes/skills/
+
+<span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>
+<span class="t-prompt">$</span> hermes skills list
+<span class="t-ok">✓ Loaded 6 skills: kube-explain, pipeline-failure-translator, terraform-plan-explainer...</span></code></pre>
             </div>
+
             <div class="tab-panel" id="panel-linux">
-              <pre class="codeblock"><code># Requirements (any platform, planned)
-# ─ Hermes Agent installed
-# ─ A model provider configured in Hermes
-# ─ Appropriate permissions for diagnostic tools
+              <pre
+                class="codeblock"><code><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository</span>
+<span class="t-prompt">$</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git
+<span class="t-prompt">$</span> cd hermes-devops-toolkit
 
-$ <span class="t-comment"># install instructions: coming soon —</span>
-$ <span class="t-comment"># platform-specific notes will land with the first release</span></code></pre>
+<span class="t-comment"># 2. Copy the skills into your local Hermes skills directory</span>
+<span class="t-prompt">$</span> mkdir -p ~/.hermes/skills
+<span class="t-prompt">$</span> cp -r skills/* ~/.hermes/skills/
+
+<span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>
+<span class="t-prompt">$</span> hermes skills list
+<span class="t-ok">✓ Loaded 6 skills: kube-explain, pipeline-failure-translator, terraform-plan-explainer...</span></code></pre>
             </div>
+
             <div class="tab-panel" id="panel-windows">
-              <pre class="codeblock"><code># Requirements (any platform, planned)
-# ─ Hermes Agent installed
-# ─ A model provider configured in Hermes
-# ─ Appropriate permissions for diagnostic tools
+              <pre
+                class="codeblock"><code><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository (PowerShell)</span>
+<span class="t-prompt">&gt;</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git
+<span class="t-prompt">&gt;</span> cd hermes-devops-toolkit
 
-$ <span class="t-comment"># install instructions: coming soon —</span>
-$ <span class="t-comment"># Windows-specific notes will land with the first release</span></code></pre>
+<span class="t-comment"># 2. Copy skills to your Hermes user directory</span>
+<span class="t-prompt">&gt;</span> New-Item -ItemType Directory -Force -Path "$HOME\.hermes\skills"
+<span class="t-prompt">&gt;</span> Copy-Item -Recurse -Force skills\* "$HOME\.hermes\skills\"
+
+<span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>
+<span class="t-prompt">&gt;</span> hermes skills list
+<span class="t-ok">✓ Loaded 6 skills: kube-explain, pipeline-failure-translator, terraform-plan-explainer...</span></code></pre>
             </div>
-            <p class="terminal-caption">The expected approach is copying a skill folder into your Hermes skills directory (<code>~/.hermes/skills/</code>). Exact commands will be documented and verified before the first release. Until then, see the <a href="https://hermes-agent.nousresearch.com/docs/" rel="noopener">Hermes Agent documentation</a>.</p>
+
+            <div class="terminal-caption install-caption">
+              <span>Skills are loaded automatically by Hermes Agent whenever you provide diagnostic logs, kubectl
+                output, or configuration diffs.</span>
+              <a href="https://hermes-agent.nousresearch.com/docs/" rel="noopener" target="_blank">Hermes Agent Docs
+                &rarr;</a>
+            </div>
           </div>
         </div>
       </div>
@@ -361,15 +622,18 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
           <div class="callout-grid">
             <div>
               <h3>Sanitize your logs</h3>
-              <p>CI/CD logs and <code>kubectl</code> output can contain secrets. Never commit credentials, tokens, or kubeconfig files. Sanitize before sharing with any model provider.</p>
+              <p>CI/CD logs and <code>kubectl</code> output can contain secrets. Never commit credentials, tokens, or
+                kubeconfig files. Sanitize before sharing with any model provider.</p>
             </div>
             <div>
               <h3>Read-only by default</h3>
-              <p>Diagnosis should not change your system. Potentially destructive actions require your explicit approval, every time.</p>
+              <p>Diagnosis should not change your system. Potentially destructive actions require your explicit
+                approval, every time.</p>
             </div>
             <div>
               <h3>Verify AI output</h3>
-              <p>AI-generated diagnoses can be wrong. Always verify critical findings against the real system state before acting on them.</p>
+              <p>AI-generated diagnoses can be wrong. Always verify critical findings against the real system state
+                before acting on them.</p>
             </div>
           </div>
         </div>
@@ -387,23 +651,30 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
         <div class="faq">
           <details>
             <summary>Is it ready to use?</summary>
-            <p>No. The project is in early development and both skills are <strong>planned, not released</strong>. Everything described on this page is the design intent, not a finished feature.</p>
+            <p>No. The project is in early development and both skills are <strong>planned, not released</strong>.
+              Everything described on this page is the design intent, not a finished feature.</p>
           </details>
           <details>
             <summary>Does this work without Hermes Agent?</summary>
-            <p>The skills are written in the standard <code>SKILL.md</code> format for <a href="https://github.com/NousResearch/hermes-agent" rel="noopener">Hermes Agent</a>. Adding support for other agent runtimes is not planned right now.</p>
+            <p>The skills are written in the standard <code>SKILL.md</code> format for <a
+                href="https://github.com/NousResearch/hermes-agent" rel="noopener">Hermes Agent</a>. Adding support for
+              other agent runtimes is not planned right now.</p>
           </details>
           <details>
             <summary>Is this affiliated with Nous Research?</summary>
-            <p>No. Independent community project, not affiliated with or endorsed by Nous Research. Hermes Agent is a product of Nous Research.</p>
+            <p>No. Independent community project, not affiliated with or endorsed by Nous Research. Hermes Agent is a
+              product of Nous Research.</p>
           </details>
           <details>
             <summary>Will it cost anything?</summary>
-            <p>The toolkit is MIT-licensed and will be free. You still pay for your own model provider usage through Hermes Agent.</p>
+            <p>The toolkit is MIT-licensed and will be free. You still pay for your own model provider usage through
+              Hermes Agent.</p>
           </details>
           <details>
             <summary>How can I contribute?</summary>
-            <p>Suggest a specific DevOps problem worth solving, add sanitized troubleshooting examples, improve diagnostic instructions, or write tests for known failure scenarios. See <code>CONTRIBUTING.md</code> in the repository.</p>
+            <p>Suggest a specific DevOps problem worth solving, add sanitized troubleshooting examples, improve
+              diagnostic instructions, or write tests for known failure scenarios. See <code>CONTRIBUTING.md</code> in
+              the repository.</p>
           </details>
         </div>
       </div>
@@ -417,16 +688,20 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
         <section class="footer-col">
           <h3>Project</h3>
           <ul>
-            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit#readme" rel="noopener">README</a></li>
+            <li><a href="https://github.com/NotHarshhaa/hermes-devops-toolkit#readme" rel="noopener">README</a>
+            </li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/LICENSE" rel="noopener">License (MIT)</a></li>
+            <li><a href="https://github.com/NotHarshhaa/hermes-devops-toolkit/blob/main/LICENSE" rel="noopener">License
+                (MIT)</a></li>
           </ul>
         </section>
         <section class="footer-col">
           <h3>Community</h3>
           <ul>
-            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/issues" rel="noopener">Issues</a></li>
-            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a></li>
+            <li><a href="https://github.com/NotHarshhaa/hermes-devops-toolkit/issues" rel="noopener">Issues</a>
+            </li>
+            <li><a href="https://github.com/NotHarshhaa/hermes-devops-toolkit/blob/main/CONTRIBUTING.md"
+                rel="noopener">Contributing</a></li>
             <li><a href="#safety">Security &amp; safety</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
@@ -436,8 +711,10 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
           <ul>
             <li><a href="https://github.com/NousResearch/hermes-agent" rel="noopener">Hermes Agent (GitHub)</a></li>
             <li><a href="https://hermes-agent.nousresearch.com/docs/" rel="noopener">Hermes Agent docs</a></li>
-            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/docs/skill-authoring.md" rel="noopener">Skill authoring format</a></li>
-            <li><a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/docs/safety.md" rel="noopener">Safety guidelines</a></li>
+            <li><a href="https://github.com/NotHarshhaa/hermes-devops-toolkit/blob/main/docs/skill-authoring.md"
+                rel="noopener">Skill authoring format</a></li>
+            <li><a href="https://github.com/NotHarshhaa/hermes-devops-toolkit/blob/main/docs/safety.md"
+                rel="noopener">Safety guidelines</a></li>
           </ul>
         </section>
       </div>
@@ -445,7 +722,8 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
       <div class="footer-legal">
         <p>
           © 2026 Hermes DevOps Toolkit contributors ·
-          <a href="https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/hermes-devops-toolkit/blob/main/LICENSE" rel="noopener">MIT License</a> ·
+          <a href="https://github.com/NotHarshhaa/hermes-devops-toolkit/blob/main/LICENSE" rel="noopener">MIT
+            License</a> ·
           Independent community project, not affiliated with or endorsed by Nous Research.
         </p>
         <p class="tagline">One problem, one focused skill, one practical solution at a time.</p>
@@ -468,7 +746,7 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
           setTimeout(function () { btn.textContent = "Copy"; }, 1600);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(done, function () {});
+          navigator.clipboard.writeText(text).then(done, function () { });
         } else {
           var ta = document.createElement("textarea");
           ta.value = text;
@@ -477,7 +755,7 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
           ta.style.left = "-9999px";
           document.body.appendChild(ta);
           ta.select();
-          try { document.execCommand("copy"); done(); } catch (e) {}
+          try { document.execCommand("copy"); done(); } catch (e) { }
           document.body.removeChild(ta);
         }
       }
@@ -499,7 +777,14 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
         if (!bar) return;
 
         var panels = term.querySelectorAll(".tab-panel");
-        if (panels.length > 0) {
+        var heroScenarios = term.querySelectorAll(".hero-scenario");
+
+        if (heroScenarios.length > 0) {
+          bar.appendChild(createButton(function () {
+            var activeSc = term.querySelector(".hero-scenario.active");
+            return activeSc ? activeSc.innerText : term.innerText;
+          }));
+        } else if (panels.length > 0) {
           bar.appendChild(createButton(function () {
             for (var i = 0; i < panels.length; i++) {
               if (panels[i].offsetParent !== null || window.getComputedStyle(panels[i]).display !== "none") {
@@ -518,6 +803,44 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
         }
       });
 
+      // Hero terminal scenario tab switcher
+      var termTabs = document.querySelectorAll(".hero-term-nav .term-tab");
+      var heroScenarios = document.querySelectorAll(".hero-scenario");
+
+      termTabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          var targetId = tab.getAttribute("data-target");
+          termTabs.forEach(function (t) {
+            t.classList.remove("active");
+            t.setAttribute("aria-selected", "false");
+          });
+          heroScenarios.forEach(function (s) {
+            s.classList.remove("active");
+          });
+
+          tab.classList.add("active");
+          tab.setAttribute("aria-selected", "true");
+          var targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.classList.add("active");
+          }
+        });
+      });
+
+      // Quick copy for embedded code snippets
+      document.querySelectorAll(".term-code").forEach(function (el) {
+        el.setAttribute("title", "Click to copy command");
+        el.style.cursor = "pointer";
+        el.addEventListener("click", function () {
+          copyText(el.innerText, null);
+          var original = el.innerText;
+          el.innerText = "✓ Copied to clipboard!";
+          setTimeout(function () {
+            el.innerText = original;
+          }, 1500);
+        });
+      });
+
       // Auto-close mobile drawer when an anchor link is tapped
       var navToggle = document.getElementById("nav-toggle");
       if (navToggle) {
@@ -530,4 +853,5 @@ $ <span class="t-comment"># Windows-specific notes will land with the first rele
     })();
   </script>
 </body>
+
 </html>
