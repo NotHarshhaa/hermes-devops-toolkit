@@ -25,12 +25,16 @@ This toolkit tackles these with small, focused skills that can be developed, tes
 
 ## Skills
 
-The toolkit currently ships two skills.
+The toolkit currently ships six skills.
 
 | Skill | Description | Status |
 |---|---|---|
 | Pipeline Failure Translator | Analyzes CI/CD failure logs, identifies likely root causes, and suggests fixes. | Implemented |
 | KubeExplain | Explains common Kubernetes failures and recommends diagnostic steps. | Implemented |
+| Terraform Plan Explainer | Analyzes Terraform plans, flags forced replacements and blast radius risks. | Implemented |
+| Docker Cleanup Advisor | Recommends prioritized, safe Docker disk space reclamation without data loss. | Implemented |
+| DiskPressure Detective | Diagnoses Kubernetes node DiskPressure, eviction thresholds, and storage leaks. | Implemented |
+| KubeManifest Doctor | Audits Kubernetes YAML manifests for security issues, resource limits, and deprecated APIs. | Implemented |
 
 *Statuses will be updated as each skill is tested and released.*
 
@@ -63,6 +67,60 @@ Capabilities:
 - Base explanations on the evidence provided, not generic guesses.
 
 Example use case: a pod enters `CrashLoopBackOff`. The skill examines the available diagnostic output, identifies likely causes, and recommends next steps to investigate.
+
+### 3. Terraform Plan Explainer
+
+**Understand infrastructure blast radius and catch destructive changes before running apply.**
+
+Capabilities:
+
+- Detect resource destructions (`-`) and forced replacements (`-/+`).
+- Identify the exact attribute modifications triggering `# forces replacement`.
+- Distinguish stateful resource risks (e.g. databases, volumes, storage buckets) from stateless resources.
+- Flag security group rule deletions and open CIDR ingress risks.
+- Recommend safe `[read-only]` pre-apply verification commands.
+
+Example use case: a Terraform refactoring changes an RDS subnet group, triggering `# forces replacement`. The skill flags the risk of data loss and downtime, advising snapshot verification prior to apply.
+
+### 4. Docker Cleanup Advisor
+
+**Safely reclaim gigabytes of Docker storage without destroying persistent development data.**
+
+Capabilities:
+
+- Analyze `docker system df` output, image registries, container statuses, and build caches.
+- Prioritize high-yield, zero-risk cleanup (dangling build cache and untagged images).
+- Protect persistent volumes and warn against blind `docker volume prune` or `docker system prune --volumes`.
+- Provide tiered cleanup plans matching the severity of disk exhaustion.
+
+Example use case: a CI/CD runner runs out of disk space (`no space left on device`). The skill pinpoints 50GB+ of unpruned buildx cache, recommending safe reclamation commands without wiping active runners.
+
+### 5. DiskPressure Detective
+
+**Diagnose Kubernetes node DiskPressure and pod evictions before nodes crash.**
+
+Capabilities:
+
+- Interpret node conditions (`DiskPressure: True`) and scheduler taints (`node.kubernetes.io/disk-pressure:NoSchedule`).
+- Differentiate between `nodefs` (root filesystem), `imagefs` (container runtime), and pod `ephemeral-storage`.
+- Detect unconstrained pod writes (`emptyDir` or container logs) triggering eviction manager thresholds.
+- Recommend targeted, read-only diagnostic commands and preventive ephemeral limits.
+
+Example use case: a worker node enters `NodeHasDiskPressure` and evicts analytics pods. The skill identifies an unconstrained container consuming 48GB of temporary storage and recommends setting `ephemeral-storage` limits.
+
+### 6. KubeManifest Doctor
+
+**Catch Kubernetes security flaws, missing limits, and deprecated APIs before applying YAML.**
+
+Capabilities:
+
+- Audit manifests for securityContext anti-patterns (running as root, missing `allowPrivilegeEscalation: false`).
+- Identify missing resource `requests` and `limits` that cause `BestEffort` eviction vulnerability.
+- Detect probe misconfigurations, such as database dependencies inside liveness probes.
+- Validate API versions and detect deprecated schemas (e.g. `networking.k8s.io/v1beta1`).
+- Flag selector mismatches between Services and Deployments.
+
+Example use case: a team deploys a new service that fails to receive traffic. The skill catches a mismatched label selector in the Service and flags a flawed liveness probe that queries PostgreSQL.
 
 ## Design Principles
 
@@ -108,14 +166,12 @@ In the meantime, see the official [Hermes Agent documentation](https://hermes-ag
 
 Possible additions, subject to community interest and available time:
 
-- Terraform Plan Explainer
-- Docker Cleanup Advisor
-- DiskPressure Detective
-- KubeManifest Doctor
 - ServiceFailure Assistant
 - Cloud Configuration Troubleshooter
 - Ansible Failure Analyzer
 - Container Build Failure Assistant
+- GitOps Drift Investigator
+- Cloud Cost Anomaly Explainer
 
 These are ideas for exploration, not committed features.
 

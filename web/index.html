@@ -119,8 +119,8 @@
     <section class="section" id="skills">
       <div class="container">
         <header class="section-head">
-          <p class="kicker">Planned skills</p>
-          <h2>Two focused skills to start</h2>
+          <p class="kicker">Available Skills</p>
+          <h2>DevOps Troubleshooting Skills</h2>
           <p>Each skill is a folder with a <code>SKILL.md</code> of instructions that Hermes Agent loads when relevant. Small, modular, evidence-based.</p>
         </header>
 
@@ -128,7 +128,7 @@
           <article class="skill-card">
             <div class="skill-head">
               <span class="mono-label">skills/pipeline-failure-translator</span>
-              <span class="chip chip-planned">Planned</span>
+              <span class="chip chip-planned">Implemented</span>
             </div>
             <h3>Pipeline Failure Translator</h3>
             <p>Analyzes Jenkins and GitHub Actions failure logs, pinpoints the failing stage and the error that matters in the noise, explains likely root causes in plain language, and suggests fixes plus verification steps.</p>
@@ -142,7 +142,7 @@
           <article class="skill-card">
             <div class="skill-head">
               <span class="mono-label">skills/kube-explain</span>
-              <span class="chip chip-planned">Planned</span>
+              <span class="chip chip-planned">Implemented</span>
             </div>
             <h3>KubeExplain</h3>
             <p>Explains common Kubernetes failure states — <code>CrashLoopBackOff</code>, <code>ImagePullBackOff</code>, <code>Pending</code> — from your <code>kubectl describe</code> output, events, and logs, then recommends the next most useful diagnostic command.</p>
@@ -150,6 +150,62 @@
               <li>Interpret describe output, events, and logs</li>
               <li>Pull failures, crash loops, scheduling problems</li>
               <li>Potential fixes and their risks</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-head">
+              <span class="mono-label">skills/terraform-plan-explainer</span>
+              <span class="chip chip-planned">Implemented</span>
+            </div>
+            <h3>Terraform Plan Explainer</h3>
+            <p>Analyzes <code>terraform plan</code> output, identifies destructive changes and forced replacements (<code>-/+</code>), evaluates blast radius on databases and networks, and recommends safe pre-apply verification checks.</p>
+            <ul class="skill-points">
+              <li>Detect <code>forces replacement</code> triggers</li>
+              <li>Stateful resource loss &amp; downtime assessment</li>
+              <li>Security group &amp; firewall drop warnings</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-head">
+              <span class="mono-label">skills/docker-cleanup-advisor</span>
+              <span class="chip chip-planned">Implemented</span>
+            </div>
+            <h3>Docker Cleanup Advisor</h3>
+            <p>Analyzes Docker storage breakdown from <code>docker system df</code>, prioritizing high-yield zero-risk build cache and dangling image reclamation while protecting persistent database volumes from blind pruning.</p>
+            <ul class="skill-points">
+              <li>Reclaim 10GB–100GB+ without service disruption</li>
+              <li>Safeguard named &amp; persistent database volumes</li>
+              <li>Tiered cleanup plan from zero-risk to deep prune</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-head">
+              <span class="mono-label">skills/diskpressure-detective</span>
+              <span class="chip chip-planned">Implemented</span>
+            </div>
+            <h3>DiskPressure Detective</h3>
+            <p>Diagnoses Kubernetes node <code>DiskPressure=True</code> conditions and ephemeral storage evictions. Differentiates root <code>nodefs</code>, runtime <code>imagefs</code>, and runaway pod container logs or temporary storage.</p>
+            <ul class="skill-points">
+              <li>Differentiate nodefs vs imagefs threshold breaches</li>
+              <li>Pinpoint runaway pod ephemeral storage &amp; logs</li>
+              <li>Targeted read-only triage commands &amp; limits</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-head">
+              <span class="mono-label">skills/kubemanifest-doctor</span>
+              <span class="chip chip-planned">Implemented</span>
+            </div>
+            <h3>KubeManifest Doctor</h3>
+            <p>Audits Kubernetes YAML manifests and Helm outputs for production readiness: flags missing CPU/memory limits, insecure root execution, probe anti-patterns, selector mismatches, and deprecated API versions.</p>
+            <ul class="skill-points">
+              <li>Identify BestEffort QoS &amp; missing limits</li>
+              <li>Catch database checks in liveness probes</li>
+              <li>Detect deprecated APIs &amp; selector mismatches</li>
             </ul>
           </article>
         </div>
