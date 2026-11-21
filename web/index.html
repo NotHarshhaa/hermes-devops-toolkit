@@ -48,6 +48,7 @@
           <img src="assets/nous-badge.svg" alt="Nous Research badge" class="brand-badge" width="27" height="38">
         </span>
         <span class="brand-name">Hermes&nbsp;DevOps&nbsp;Toolkit</span>
+        <span class="nav-skill-badge" title="9 Production Skills Ready">9 SKILLS</span>
       </a>
 
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
@@ -58,10 +59,17 @@
       <nav class="site-nav" aria-label="Primary">
         <ul>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#playground">Simulator</a></li>
           <li><a href="#features">Principles</a></li>
           <li><a href="#how-it-works">How it works</a></li>
           <li><a href="#requirements">Install</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li>
+            <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+              <span class="theme-icon" aria-hidden="true">◐</span>
+              <span class="theme-label">Theme</span>
+            </button>
+          </li>
           <li><a class="nav-cta" href="https://github.com/NotHarshhaa/hermes-devops-toolkit" rel="noopener">GitHub</a>
           </li>
         </ul>
@@ -92,7 +100,7 @@
             <a class="btn btn-ghost" href="#skills">Explore skills</a>
           </div>
           <p class="hero-note">
-            <strong>Status:</strong> six troubleshooting skills implemented in the toolkit.
+            <strong>Status:</strong> nine troubleshooting skills implemented in the toolkit.
           </p>
         </div>
 
@@ -121,6 +129,15 @@
             </button>
             <button type="button" class="term-tab" data-target="sc-docker" role="tab" aria-selected="false">
               <span class="tab-badge">Docker</span>Disk Space
+            </button>
+            <button type="button" class="term-tab" data-target="sc-gitops" role="tab" aria-selected="false">
+              <span class="tab-badge">GitOps</span>Drift Flap
+            </button>
+            <button type="button" class="term-tab" data-target="sc-svc" role="tab" aria-selected="false">
+              <span class="tab-badge">Network</span>Ingress 502
+            </button>
+            <button type="button" class="term-tab" data-target="sc-cost" role="tab" aria-selected="false">
+              <span class="tab-badge">FinOps</span>Cost Spike
             </button>
           </div>
 
@@ -261,6 +278,111 @@
               </div>
             </div>
 
+            <!-- Scenario 5: GitOps Drift Flapping -->
+            <div class="hero-scenario" id="sc-gitops">
+              <div class="term-line term-prompt-line">
+                <span class="term-prompt">➜</span>
+                <span class="term-cmd">hermes "Why is checkout-service in ArgoCD constantly OutOfSync?"</span>
+              </div>
+              <div class="term-response">
+                <div class="term-res-header">
+                  <span class="agent-tag">HERMES AGENT</span>
+                  <span class="skill-tag">skill: gitops-drift-investigator</span>
+                  <span class="confidence-badge">Webhook Flapping</span>
+                </div>
+                <div class="term-res-content">
+                  <div class="diag-item">
+                    <span class="diag-label">OBSERVED DRIFT</span>
+                    <span class="diag-val">replicas (Git: 2 vs Live: 7) + injected Linkerd proxy sidecar</span>
+                  </div>
+                  <div class="diag-item">
+                    <span class="diag-label">ROOT CAUSE</span>
+                    <span class="diag-val highlight-warn">HPA scaling conflicts with Git replicas; Linkerd webhook mutates pod spec</span>
+                  </div>
+                  <div class="diag-item action-item">
+                    <span class="diag-label">INSPECT HPA</span>
+                    <code class="term-code">kubectl get hpa -n payments checkout-api</code>
+                    <span class="safety-chip chip-readonly">[read-only]</span>
+                  </div>
+                  <div class="diag-item fix-item">
+                    <span class="diag-label">RECOMMENDED FIX</span>
+                    <span class="diag-val">Remove replicas from Git spec &amp; add ignoreDifferences for Linkerd</span>
+                    <span class="safety-chip chip-approval">[needs approval]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 6: Network Ingress 502 Bad Gateway -->
+            <div class="hero-scenario" id="sc-svc">
+              <div class="term-line term-prompt-line">
+                <span class="term-prompt">➜</span>
+                <span class="term-cmd">hermes "Ingress returns 502 Bad Gateway on /v1/payments"</span>
+              </div>
+              <div class="term-response">
+                <div class="term-res-header">
+                  <span class="agent-tag">HERMES AGENT</span>
+                  <span class="skill-tag">skill: service-failure-assistant</span>
+                  <span class="confidence-badge badge-danger">502 OUTAGE</span>
+                </div>
+                <div class="term-res-content">
+                  <div class="diag-item">
+                    <span class="diag-label">FAILING LAYER</span>
+                    <span class="diag-val highlight-danger">Service Selector Typo &bull; Endpoints: &lt;none&gt;</span>
+                  </div>
+                  <div class="diag-item">
+                    <span class="diag-label">ROOT CAUSE</span>
+                    <span class="diag-val">Service queries 'app=payment-processor' but Pods use 'app=payments-processor'</span>
+                  </div>
+                  <div class="diag-item action-item">
+                    <span class="diag-label">VERIFY ENDPOINTS</span>
+                    <code class="term-code">kubectl get endpoints payments-service -n payments</code>
+                    <span class="safety-chip chip-readonly">[read-only]</span>
+                  </div>
+                  <div class="diag-item fix-item">
+                    <span class="diag-label">INSTANT FIX</span>
+                    <span class="diag-val">Patch Service selector to plural 'payments-processor'</span>
+                    <span class="safety-chip chip-approval">[needs approval]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 7: Cloud Cost Spike -->
+            <div class="hero-scenario" id="sc-cost">
+              <div class="term-line term-prompt-line">
+                <span class="term-prompt">➜</span>
+                <span class="term-cmd">hermes "Why did our AWS us-east-1 bill surge by $1,850 this week?"</span>
+              </div>
+              <div class="term-response">
+                <div class="term-res-header">
+                  <span class="agent-tag">HERMES AGENT</span>
+                  <span class="skill-tag">skill: cloud-cost-anomaly-explainer</span>
+                  <span class="confidence-badge">~$5,778/mo Run-Rate</span>
+                </div>
+                <div class="term-res-content">
+                  <div class="diag-item">
+                    <span class="diag-label">COST DRIVER</span>
+                    <span class="diag-val highlight-danger">NAT Gateway Egress (42,800 GB @ $0.045/GB processed)</span>
+                  </div>
+                  <div class="diag-item">
+                    <span class="diag-label">ROOT CAUSE</span>
+                    <span class="diag-val">Private ML training pods reading S3 through NAT instead of VPC Endpoint</span>
+                  </div>
+                  <div class="diag-item action-item">
+                    <span class="diag-label">CHECK ROUTES</span>
+                    <code class="term-code">aws ec2 describe-route-tables --region us-east-1</code>
+                    <span class="safety-chip chip-readonly">[read-only]</span>
+                  </div>
+                  <div class="diag-item fix-item">
+                    <span class="diag-label">FREE FIX</span>
+                    <span class="diag-val">Deploy AWS S3 Gateway VPC Endpoint (100% free &bull; $0 data fee)</span>
+                    <span class="safety-chip chip-approval">[needs approval]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Interactive terminal status footer -->
             <div class="hero-term-footer">
               <span class="term-status"><span class="cursor-blink">▋</span> Ready for prompt</span>
@@ -286,27 +408,79 @@
             Small, modular, evidence-based.</p>
         </header>
 
-        <div class="skill-grid">
-          <article class="skill-card">
+        <!-- Interactive Skills Toolbar: Live Search & Category Filtering -->
+        <div class="skills-toolbar" role="region" aria-label="Skills search and filtering">
+          <div class="skills-toolbar-top">
+            <div class="skill-search-box">
+              <svg class="search-icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="search" id="skill-search-input" class="skill-search-input" placeholder="Search skills by name, trigger, tool or keyword... (Press / to focus)" aria-label="Search skills">
+              <span class="search-kbd-hint" aria-hidden="true">/</span>
+            </div>
+            <div class="skills-count-indicator" id="skills-count-text">
+              Showing 9 of 9 skills
+            </div>
+          </div>
+
+          <div class="filter-pills-row" role="tablist" aria-label="Filter skills by category">
+            <button type="button" class="filter-pill-btn active" data-cat="all" role="tab" aria-selected="true">
+              All <span class="pill-count">(9)</span>
+            </button>
+            <button type="button" class="filter-pill-btn" data-cat="k8s" role="tab" aria-selected="false">
+              Kubernetes <span class="pill-count">(4)</span>
+            </button>
+            <button type="button" class="filter-pill-btn" data-cat="cicd" role="tab" aria-selected="false">
+              CI/CD &amp; GitOps <span class="pill-count">(2)</span>
+            </button>
+            <button type="button" class="filter-pill-btn" data-cat="cloud" role="tab" aria-selected="false">
+              Cloud &amp; Terraform <span class="pill-count">(2)</span>
+            </button>
+            <button type="button" class="filter-pill-btn" data-cat="storage" role="tab" aria-selected="false">
+              Storage &amp; FinOps <span class="pill-count">(2)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="skill-grid" id="skill-cards-container">
+          <!-- Skill 1: Pipeline Failure Translator -->
+          <article class="skill-card" data-category="cicd" data-id="pipeline-failure-translator" data-name="Pipeline Failure Translator">
             <div class="skill-head">
               <span class="mono-label">skills/pipeline-failure-translator</span>
-              <span class="chip chip-planned">Implemented</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">CI/CD</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
             </div>
             <h3>Pipeline Failure Translator</h3>
             <p>Analyzes Jenkins and GitHub Actions failure logs, pinpoints the failing stage and the error that matters
-              in the noise, explains likely root causes in plain language, and suggests fixes plus verification steps.
+              in the noise, explains likely root causes in plain language, and suggests targeted remediation steps.
             </p>
             <ul class="skill-points">
               <li>Find the one error that actually failed the run</li>
               <li>Separate observed errors from hypotheses</li>
               <li>Recommend read-only checks before changes</li>
             </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Analyze GitHub Actions workflow run failure"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Analyze GitHub Actions workflow run failure"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="pipeline-failure-translator">Inspect Skill &rarr;</button>
+            </div>
           </article>
 
-          <article class="skill-card">
+          <!-- Skill 2: KubeExplain -->
+          <article class="skill-card" data-category="k8s" data-id="kube-explain" data-name="KubeExplain">
             <div class="skill-head">
               <span class="mono-label">skills/kube-explain</span>
-              <span class="chip chip-planned">Implemented</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">K8s</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
             </div>
             <h3>KubeExplain</h3>
             <p>Explains common Kubernetes failure states — <code>CrashLoopBackOff</code>, <code>ImagePullBackOff</code>,
@@ -318,12 +492,25 @@
               <li>Pull failures, crash loops, scheduling problems</li>
               <li>Potential fixes and their risks</li>
             </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Why is my pod stuck in CrashLoopBackOff?"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Why is my pod stuck in CrashLoopBackOff?"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="kube-explain">Inspect Skill &rarr;</button>
+            </div>
           </article>
 
-          <article class="skill-card">
+          <!-- Skill 3: Terraform Plan Explainer -->
+          <article class="skill-card" data-category="cloud" data-id="terraform-plan-explainer" data-name="Terraform Plan Explainer">
             <div class="skill-head">
               <span class="mono-label">skills/terraform-plan-explainer</span>
-              <span class="chip chip-planned">Implemented</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">Cloud</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
             </div>
             <h3>Terraform Plan Explainer</h3>
             <p>Analyzes <code>terraform plan</code> output, identifies destructive changes and forced replacements
@@ -334,12 +521,25 @@
               <li>Stateful resource loss &amp; downtime assessment</li>
               <li>Security group &amp; firewall drop warnings</li>
             </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Explain blast radius of this terraform plan"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Explain blast radius of this terraform plan"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="terraform-plan-explainer">Inspect Skill &rarr;</button>
+            </div>
           </article>
 
-          <article class="skill-card">
+          <!-- Skill 4: Docker Cleanup Advisor -->
+          <article class="skill-card" data-category="storage" data-id="docker-cleanup-advisor" data-name="Docker Cleanup Advisor">
             <div class="skill-head">
               <span class="mono-label">skills/docker-cleanup-advisor</span>
-              <span class="chip chip-planned">Implemented</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">Storage</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
             </div>
             <h3>Docker Cleanup Advisor</h3>
             <p>Analyzes Docker storage breakdown from <code>docker system df</code>, prioritizing high-yield zero-risk
@@ -350,12 +550,25 @@
               <li>Safeguard named &amp; persistent database volumes</li>
               <li>Tiered cleanup plan from zero-risk to deep prune</li>
             </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Runner disk is 98% full. What can I safely prune?"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Runner disk is 98% full. What can I safely prune?"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="docker-cleanup-advisor">Inspect Skill &rarr;</button>
+            </div>
           </article>
 
-          <article class="skill-card">
+          <!-- Skill 5: DiskPressure Detective -->
+          <article class="skill-card" data-category="k8s" data-id="diskpressure-detective" data-name="DiskPressure Detective">
             <div class="skill-head">
               <span class="mono-label">skills/diskpressure-detective</span>
-              <span class="chip chip-planned">Implemented</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">K8s</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
             </div>
             <h3>DiskPressure Detective</h3>
             <p>Diagnoses Kubernetes node <code>DiskPressure=True</code> conditions and ephemeral storage evictions.
@@ -366,12 +579,25 @@
               <li>Pinpoint runaway pod ephemeral storage &amp; logs</li>
               <li>Targeted read-only triage commands &amp; limits</li>
             </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Diagnose node DiskPressure and pod evictions"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Diagnose node DiskPressure and pod evictions"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="diskpressure-detective">Inspect Skill &rarr;</button>
+            </div>
           </article>
 
-          <article class="skill-card">
+          <!-- Skill 6: KubeManifest Doctor -->
+          <article class="skill-card" data-category="k8s" data-id="kubemanifest-doctor" data-name="KubeManifest Doctor">
             <div class="skill-head">
               <span class="mono-label">skills/kubemanifest-doctor</span>
-              <span class="chip chip-planned">Implemented</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">K8s</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
             </div>
             <h3>KubeManifest Doctor</h3>
             <p>Audits Kubernetes YAML manifests and Helm outputs for production readiness: flags missing CPU/memory
@@ -382,7 +608,220 @@
               <li>Catch database checks in liveness probes</li>
               <li>Detect deprecated APIs &amp; selector mismatches</li>
             </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Audit deployment.yaml for security and resource limits"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Audit deployment.yaml for security and resource limits"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="kubemanifest-doctor">Inspect Skill &rarr;</button>
+            </div>
           </article>
+
+          <!-- Skill 7: GitOps Drift Investigator (NEW) -->
+          <article class="skill-card" data-category="cicd" data-id="gitops-drift-investigator" data-name="GitOps Drift Investigator">
+            <div class="skill-head">
+              <span class="mono-label">skills/gitops-drift-investigator</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">GitOps</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
+            </div>
+            <h3>GitOps Drift Investigator</h3>
+            <p>Diagnoses GitOps reconciliation failures, perpetual out-of-sync drift, admission mutating webhook conflicts
+              (Linkerd/Istio/Vault), and immutable field modification blocks across ArgoCD and Flux CD.
+            </p>
+            <ul class="skill-points">
+              <li>Resolve HPA and mutation webhook sync flapping</li>
+              <li>Catch immutable field blocks (e.g. StatefulSets)</li>
+              <li>Configure precise <code>ignoreDifferences</code> rules</li>
+            </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Why is my ArgoCD checkout app perpetually OutOfSync?"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Why is my ArgoCD checkout app perpetually OutOfSync?"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="gitops-drift-investigator">Inspect Skill &rarr;</button>
+            </div>
+          </article>
+
+          <!-- Skill 8: Service Failure Assistant (NEW) -->
+          <article class="skill-card" data-category="k8s" data-id="service-failure-assistant" data-name="Service Failure Assistant">
+            <div class="skill-head">
+              <span class="mono-label">skills/service-failure-assistant</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">Network</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
+            </div>
+            <h3>Service Failure Assistant</h3>
+            <p>Traces Kubernetes networking breakdowns, Ingress 502 Bad Gateway and 503 Service Unavailable errors,
+              missing service endpoints (<code>&lt;none&gt;</code>), targetPort mismatches, and in-cluster CoreDNS timeouts.
+            </p>
+            <ul class="skill-points">
+              <li>End-to-end packet trace: Ingress &rarr; Svc &rarr; Pod</li>
+              <li>Detect selector typos causing empty Endpoints</li>
+              <li>Resolve CoreDNS crashloops &amp; query amplification</li>
+            </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Ingress returns 502 Bad Gateway on /v1/payments"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Ingress returns 502 Bad Gateway on /v1/payments"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="service-failure-assistant">Inspect Skill &rarr;</button>
+            </div>
+          </article>
+
+          <!-- Skill 9: Cloud Cost Anomaly Explainer (NEW) -->
+          <article class="skill-card" data-category="cloud" data-id="cloud-cost-anomaly-explainer" data-name="Cloud Cost Anomaly Explainer">
+            <div class="skill-head">
+              <span class="mono-label">skills/cloud-cost-anomaly-explainer</span>
+              <div class="skill-card-badges">
+                <span class="chip-cat">FinOps</span>
+                <span class="chip chip-planned">Implemented</span>
+              </div>
+            </div>
+            <h3>Cloud Cost Anomaly Explainer</h3>
+            <p>Analyzes sudden cloud billing spikes, NAT Gateway per-GB data processing surges, cross-AZ transfer fees,
+              and orphaned storage assets (unattached EBS volumes, idle IPs) across AWS, GCP, and Azure.
+            </p>
+            <ul class="skill-points">
+              <li>Pinpoint NAT Gateway data processing surges</li>
+              <li>Audit unattached EBS volumes &amp; orphaned snapshots</li>
+              <li>Free architectural fixes (S3 Gateway VPC Endpoints)</li>
+            </ul>
+            <div class="skill-quick-cmd">
+              <div class="cmd-box">
+                <code>hermes "Why did our AWS us-east-1 bill surge by $1,850 this week?"</code>
+                <button type="button" class="cmd-copy-mini-btn" data-copy='hermes "Why did our AWS us-east-1 bill surge by $1,850 this week?"' title="Copy prompt">Copy</button>
+              </div>
+            </div>
+            <div class="skill-actions">
+              <button type="button" class="btn-inspect-skill" data-skill-id="cloud-cost-anomaly-explainer">Inspect Skill &rarr;</button>
+            </div>
+          </article>
+
+          <!-- Empty search state fallback -->
+          <div class="skills-empty-state" id="skills-empty-state">
+            <h3>No matching skills found</h3>
+            <p>Try searching for different terms (e.g. <code>k8s</code>, <code>ingress</code>, <code>drift</code>, <code>cost</code>, <code>docker</code>, <code>terraform</code>).</p>
+            <button type="button" class="btn btn-ghost" id="btn-reset-filters">Reset all filters</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= Diagnostic Simulator Playground ============================= -->
+    <section class="section section-alt" id="playground">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Live Simulation</p>
+          <h2>Interactive Diagnostic Playground</h2>
+          <p>Explore how Hermes Agent inspects real DevOps failures, isolates the root cause, and guarantees read-only safety.</p>
+        </header>
+
+        <div class="playground-box">
+          <div class="playground-header">
+            <div class="playground-title-group">
+              <h3 id="sim-scenario-title">Ingress 502 Bad Gateway &bull; Missing Endpoints</h3>
+              <p id="sim-scenario-sub">Simulation of Hermes evaluating upstream connection failure in Kubernetes</p>
+            </div>
+            <div class="playground-actions">
+              <button type="button" class="btn btn-primary" id="btn-run-simulation">▶ Run Diagnostic</button>
+            </div>
+          </div>
+
+          <!-- Scenario selector chips -->
+          <div class="scenario-chips-row" role="tablist" aria-label="Select diagnostic scenario to simulate">
+            <button type="button" class="scenario-btn active" data-sim="sim-ingress" role="tab" aria-selected="true">
+              <span>🌐</span> Ingress 502 Outage
+            </button>
+            <button type="button" class="scenario-btn" data-sim="sim-oom" role="tab" aria-selected="false">
+              <span>💥</span> Pod OOMKilled
+            </button>
+            <button type="button" class="scenario-btn" data-sim="sim-gitops" role="tab" aria-selected="false">
+              <span>🔄</span> GitOps Drift Flap
+            </button>
+            <button type="button" class="scenario-btn" data-sim="sim-nat" role="tab" aria-selected="false">
+              <span>💸</span> NAT Gateway $1.8k Spike
+            </button>
+            <button type="button" class="scenario-btn" data-sim="sim-tf" role="tab" aria-selected="false">
+              <span>⚠️</span> Terraform RDS Replace
+            </button>
+            <button type="button" class="scenario-btn" data-sim="sim-docker" role="tab" aria-selected="false">
+              <span>📦</span> Docker 98% Disk Full
+            </button>
+          </div>
+
+          <div class="playground-body">
+            <!-- Left: Raw Input Evidence -->
+            <div class="playground-col">
+              <div class="playground-col-head">
+                <span class="playground-col-label">Raw Diagnostic Input (Sanitized)</span>
+                <span class="chip chip-ghost" id="sim-input-format">kubectl output</span>
+              </div>
+              <pre class="playground-log-view" id="sim-log-view"><code>Loading scenario...</code></pre>
+            </div>
+
+            <!-- Right: Hermes Agent Diagnostic Execution -->
+            <div class="playground-col">
+              <div class="playground-col-head">
+                <span class="playground-col-label">Hermes Agent Diagnostic Engine</span>
+                <span class="chip chip-planned" id="sim-skill-matched">skill: service-failure-assistant</span>
+              </div>
+
+              <div class="playground-stages" id="sim-stages-container">
+                <!-- Stage 1 -->
+                <div class="stage-step-card active-stage" id="stage-1">
+                  <div class="stage-header">
+                    <span class="stage-num-tag">Stage 1 &bull; Evidence Sanitization</span>
+                    <span class="safety-chip chip-readonly">Verified Safe</span>
+                  </div>
+                  <div class="stage-content" id="stage-1-text">
+                    Audited diagnostic logs for secret leakage. Internal endpoints verified safe.
+                  </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="stage-step-card" id="stage-2">
+                  <div class="stage-header">
+                    <span class="stage-num-tag">Stage 2 &bull; Skill Trigger</span>
+                    <span class="skill-tag" id="stage-2-tag">service-failure-assistant</span>
+                  </div>
+                  <div class="stage-content" id="stage-2-text">
+                    Loaded instructions for Kubernetes packet path and endpoint selector validation.
+                  </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="stage-step-card" id="stage-3">
+                  <div class="stage-header">
+                    <span class="stage-num-tag">Stage 3 &bull; Root Cause Isolation</span>
+                    <span class="confidence-badge badge-danger" id="stage-3-badge">Decisive Finding</span>
+                  </div>
+                  <div class="stage-content" id="stage-3-text">
+                    Typo detected: Service selector specifies <code>app=payment-processor</code> while running pods have <code>app=payments-processor</code>. Endpoints is <code>&lt;none&gt;</code>.
+                  </div>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="stage-step-card" id="stage-4">
+                  <div class="stage-header">
+                    <span class="stage-num-tag">Stage 4 &bull; Remediation &amp; Guardrail</span>
+                    <span class="safety-chip chip-readonly">[read-only triage first]</span>
+                  </div>
+                  <div class="stage-content" id="stage-4-text">
+                    Verify via <code>kubectl get endpoints payments-service -n payments</code>. Apply one-line YAML selector patch to restore traffic.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -557,7 +996,7 @@
 
             <div class="tab-panel" id="panel-macos">
               <pre
-                class="codeblock"><code><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository</span>
+                class="codeblock"><code id="code-macos"><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository</span>
 <span class="t-prompt">$</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git
 <span class="t-prompt">$</span> cd hermes-devops-toolkit
 
@@ -567,12 +1006,12 @@
 
 <span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>
 <span class="t-prompt">$</span> hermes skills list
-<span class="t-ok">✓ Loaded 6 skills: kube-explain, pipeline-failure-translator, terraform-plan-explainer...</span></code></pre>
+<span class="t-ok">✓ Loaded 9 skills: gitops-drift-investigator, service-failure-assistant, cloud-cost-anomaly-explainer...</span></code></pre>
             </div>
 
             <div class="tab-panel" id="panel-linux">
               <pre
-                class="codeblock"><code><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository</span>
+                class="codeblock"><code id="code-linux"><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository</span>
 <span class="t-prompt">$</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git
 <span class="t-prompt">$</span> cd hermes-devops-toolkit
 
@@ -582,12 +1021,12 @@
 
 <span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>
 <span class="t-prompt">$</span> hermes skills list
-<span class="t-ok">✓ Loaded 6 skills: kube-explain, pipeline-failure-translator, terraform-plan-explainer...</span></code></pre>
+<span class="t-ok">✓ Loaded 9 skills: gitops-drift-investigator, service-failure-assistant, cloud-cost-anomaly-explainer...</span></code></pre>
             </div>
 
             <div class="tab-panel" id="panel-windows">
               <pre
-                class="codeblock"><code><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository (PowerShell)</span>
+                class="codeblock"><code id="code-windows"><span class="t-comment"># 1. Clone the hermes-devops-toolkit repository (PowerShell)</span>
 <span class="t-prompt">&gt;</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git
 <span class="t-prompt">&gt;</span> cd hermes-devops-toolkit
 
@@ -597,7 +1036,7 @@
 
 <span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>
 <span class="t-prompt">&gt;</span> hermes skills list
-<span class="t-ok">✓ Loaded 6 skills: kube-explain, pipeline-failure-translator, terraform-plan-explainer...</span></code></pre>
+<span class="t-ok">✓ Loaded 9 skills: gitops-drift-investigator, service-failure-assistant, cloud-cost-anomaly-explainer...</span></code></pre>
             </div>
 
             <div class="terminal-caption install-caption">
@@ -608,10 +1047,53 @@
             </div>
           </div>
         </div>
+
+        <!-- Interactive Custom Skill Install Builder -->
+        <div class="install-builder-box">
+          <div class="skills-toolbar-top" style="margin-bottom: 0.8rem;">
+            <div>
+              <h3>Interactive Install Selector</h3>
+              <p class="install-builder-desc">Cherry-pick specific troubleshooting skills or install all nine together:</p>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <button type="button" class="btn btn-ghost" id="btn-select-all-skills" style="padding: 0.35rem 0.75rem; font-size: 0.76rem;">Select All</button>
+              <button type="button" class="btn btn-ghost" id="btn-clear-all-skills" style="padding: 0.35rem 0.75rem; font-size: 0.76rem;">Clear</button>
+            </div>
+          </div>
+
+          <div class="install-skill-checkboxes" id="install-checkboxes-container">
+            <!-- Dynamically populated via JS or pre-rendered -->
+            <label class="skill-check-item">
+              <input type="checkbox" value="gitops-drift-investigator" checked> gitops-drift-investigator
+            </label>
+            <label class="skill-check-item">
+              <input type="checkbox" value="service-failure-assistant" checked> service-failure-assistant
+            </label>
+            <label class="skill-check-item">
+              <input type="checkbox" value="cloud-cost-anomaly-explainer" checked> cloud-cost-anomaly-explainer
+            </label>
+            <label class="skill-check-item">
+              <input type="checkbox" value="kube-explain" checked> kube-explain
+            </label>
+            <label class="skill-check-item">
+              <input type="checkbox" value="pipeline-failure-translator" checked> pipeline-failure-translator
+            </label>
+            <label class="skill-check-item">
+              <input type="checkbox" value="terraform-plan-explainer" checked> terraform-plan-explainer
+            </label>
+            <label class="skill-check-item">
+              <input type="checkbox" value="docker-cleanup-advisor" checked> docker-cleanup-advisor
+            </label>
+            <label class="skill-check-item">
+              <input type="checkbox" value="diskpressure-detective" checked> diskpressure-detective
+            </label>
+            <label class="skill-check-item">
+              <input type="checkbox" value="kubemanifest-doctor" checked> kubemanifest-doctor
+            </label>
+          </div>
+        </div>
       </div>
     </section>
-
-
 
     <!-- ============================= Security & safety ============================= -->
     <section class="section section-alt" id="safety">
@@ -651,8 +1133,14 @@
         <div class="faq">
           <details>
             <summary>Is it ready to use?</summary>
-            <p>No. The project is in early development and both skills are <strong>planned, not released</strong>.
-              Everything described on this page is the design intent, not a finished feature.</p>
+            <p>Yes. The toolkit currently ships <strong>nine implemented troubleshooting skills</strong> covering
+              Kubernetes, CI/CD, GitOps, Terraform, Docker storage, cloud networking, and cloud cost anomalies.
+              Each skill follows the standardized <code>SKILL.md</code> format with sanitized examples and safety guardrails.</p>
+          </details>
+          <details>
+            <summary>What skills are included?</summary>
+            <p>The nine skills are: Pipeline Failure Translator, KubeExplain, Terraform Plan Explainer, Docker Cleanup Advisor,
+              DiskPressure Detective, KubeManifest Doctor, GitOps Drift Investigator, Service Failure Assistant, and Cloud Cost Anomaly Explainer.</p>
           </details>
           <details>
             <summary>Does this work without Hermes Agent?</summary>
@@ -667,8 +1155,8 @@
           </details>
           <details>
             <summary>Will it cost anything?</summary>
-            <p>The toolkit is MIT-licensed and will be free. You still pay for your own model provider usage through
-              Hermes Agent.</p>
+            <p>The toolkit is MIT-licensed and 100% free. You only pay for your own model provider usage configured
+              inside Hermes Agent.</p>
           </details>
           <details>
             <summary>How can I contribute?</summary>
@@ -733,84 +1221,153 @@
     </div>
   </footer>
 
-  <!-- Tiny optional enhancement: copy buttons on code blocks.
-       The page works fully without JS; buttons stay hidden. -->
+  <!-- ============================= Skill Details Modal ============================= -->
+  <div class="skill-modal-backdrop" id="skill-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="skill-modal-card">
+      <div class="skill-modal-head">
+        <div class="modal-head-title">
+          <span class="mono-label" id="modal-skill-id">skills/...</span>
+          <span class="chip chip-planned" id="modal-skill-badge">Implemented</span>
+        </div>
+        <button type="button" class="skill-modal-close-btn" id="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="skill-modal-body">
+        <div>
+          <h2 id="modal-skill-title" style="margin-bottom: 0.5rem; font-family: var(--font-display); font-size: 2rem;">Skill Title</h2>
+          <p class="modal-desc-text" id="modal-skill-desc">Description text...</p>
+        </div>
+
+        <div>
+          <div class="modal-section-title">Diagnostic Capabilities &amp; Key Rules</div>
+          <ul class="modal-points-list" id="modal-skill-points">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+
+        <div>
+          <div class="modal-section-title">Hermes Agent Prompt Example</div>
+          <pre class="modal-codeblock"><code id="modal-skill-prompt">hermes "..."</code></pre>
+        </div>
+
+        <div>
+          <div class="modal-section-title">Simulated Hermes Diagnostic Response Preview</div>
+          <pre class="modal-codeblock"><code id="modal-skill-response">Analysis output...</code></pre>
+        </div>
+
+        <div class="modal-footer-actions">
+          <button type="button" class="btn btn-primary" id="modal-copy-prompt-btn">Copy Hermes Prompt</button>
+          <a class="btn btn-ghost" id="modal-github-link" href="https://github.com/NotHarshhaa/hermes-devops-toolkit" rel="noopener" target="_blank">View SKILL.md Source &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Complete Interactive Enhancements Script -->
   <script defer>
     (function () {
       "use strict";
       document.documentElement.classList.add("js");
 
-      function copyText(text, btn) {
+      // ==========================================
+      // 1. Toast Notification System
+      // ==========================================
+      var toastContainer = document.getElementById("toast-container");
+      function showToast(message) {
+        if (!toastContainer) return;
+        var toast = document.createElement("div");
+        toast.className = "toast";
+        toast.innerHTML = '<span style="color:var(--ok);font-weight:bold;">✓</span> ' + message;
+        toastContainer.appendChild(toast);
+        requestAnimationFrame(function () {
+          toast.classList.add("show");
+        });
+        setTimeout(function () {
+          toast.classList.remove("show");
+          setTimeout(function () {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+          }, 250);
+        }, 2200);
+      }
+
+      // ==========================================
+      // 2. Clipboard Copy Helper
+      // ==========================================
+      function copyText(text, btn, feedbackText) {
+        var label = feedbackText || "Copied to clipboard!";
         var done = function () {
-          btn.textContent = "Copied";
-          setTimeout(function () { btn.textContent = "Copy"; }, 1600);
+          if (btn) {
+            var orig = btn.textContent;
+            btn.textContent = "Copied";
+            setTimeout(function () { btn.textContent = orig; }, 1600);
+          }
+          showToast(label);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(done, function () { });
+          navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
         } else {
-          var ta = document.createElement("textarea");
-          ta.value = text;
-          ta.setAttribute("readonly", "");
-          ta.style.position = "absolute";
-          ta.style.left = "-9999px";
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand("copy"); done(); } catch (e) { }
-          document.body.removeChild(ta);
+          fallbackCopy(text, done);
         }
       }
 
-      function createButton(getText) {
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "copy-btn";
-        btn.textContent = "Copy";
-        btn.setAttribute("aria-label", "Copy code to clipboard");
-        btn.addEventListener("click", function () {
-          copyText(getText(), btn);
-        });
-        return btn;
+      function fallbackCopy(text, done) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "absolute";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { }
+        document.body.removeChild(ta);
       }
 
-      document.querySelectorAll(".terminal").forEach(function (term) {
-        var bar = term.querySelector(".terminal-bar");
-        if (!bar) return;
+      // ==========================================
+      // 3. Theme Toggle (Dark / Light)
+      // ==========================================
+      var themeToggleBtn = document.getElementById("theme-toggle-btn");
+      var storedTheme = localStorage.getItem("hermes-theme");
+      if (storedTheme) {
+        document.documentElement.setAttribute("data-theme", storedTheme);
+      }
 
-        var panels = term.querySelectorAll(".tab-panel");
-        var heroScenarios = term.querySelectorAll(".hero-scenario");
+      function updateThemeBtn() {
+        if (!themeToggleBtn) return;
+        var currentTheme = document.documentElement.getAttribute("data-theme");
+        var isLight = currentTheme === "light" || (!currentTheme && window.matchMedia("(prefers-color-scheme: light)").matches);
+        themeToggleBtn.querySelector(".theme-icon").textContent = isLight ? "☼" : "◐";
+        themeToggleBtn.querySelector(".theme-label").textContent = isLight ? "Light" : "Dark";
+      }
+      updateThemeBtn();
 
-        if (heroScenarios.length > 0) {
-          bar.appendChild(createButton(function () {
-            var activeSc = term.querySelector(".hero-scenario.active");
-            return activeSc ? activeSc.innerText : term.innerText;
-          }));
-        } else if (panels.length > 0) {
-          bar.appendChild(createButton(function () {
-            for (var i = 0; i < panels.length; i++) {
-              if (panels[i].offsetParent !== null || window.getComputedStyle(panels[i]).display !== "none") {
-                return panels[i].innerText;
-              }
-            }
-            return panels[0].innerText;
-          }));
-        } else {
-          var block = term.querySelector(".codeblock");
-          if (block) {
-            bar.appendChild(createButton(function () {
-              return block.innerText;
-            }));
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", function () {
+          var current = document.documentElement.getAttribute("data-theme");
+          var nextTheme = "dark";
+          if (!current) {
+            nextTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "dark" : "light";
+          } else {
+            nextTheme = current === "light" ? "dark" : "light";
           }
-        }
-      });
+          document.documentElement.setAttribute("data-theme", nextTheme);
+          localStorage.setItem("hermes-theme", nextTheme);
+          updateThemeBtn();
+          showToast("Switched to " + nextTheme + " theme");
+        });
+      }
 
-      // Hero terminal scenario tab switcher
-      var termTabs = document.querySelectorAll(".hero-term-nav .term-tab");
+      // ==========================================
+      // 4. Hero Terminal Scenario Switcher
+      // ==========================================
+      var heroTabs = document.querySelectorAll(".hero-term-nav .term-tab");
       var heroScenarios = document.querySelectorAll(".hero-scenario");
 
-      termTabs.forEach(function (tab) {
+      heroTabs.forEach(function (tab) {
         tab.addEventListener("click", function () {
           var targetId = tab.getAttribute("data-target");
-          termTabs.forEach(function (t) {
+          heroTabs.forEach(function (t) {
             t.classList.remove("active");
             t.setAttribute("aria-selected", "false");
           });
@@ -821,27 +1378,610 @@
           tab.classList.add("active");
           tab.setAttribute("aria-selected", "true");
           var targetEl = document.getElementById(targetId);
-          if (targetEl) {
-            targetEl.classList.add("active");
-          }
+          if (targetEl) targetEl.classList.add("active");
         });
       });
 
-      // Quick copy for embedded code snippets
+      // Quick copy for terminal codes
       document.querySelectorAll(".term-code").forEach(function (el) {
         el.setAttribute("title", "Click to copy command");
         el.style.cursor = "pointer";
         el.addEventListener("click", function () {
-          copyText(el.innerText, null);
-          var original = el.innerText;
-          el.innerText = "✓ Copied to clipboard!";
-          setTimeout(function () {
-            el.innerText = original;
-          }, 1500);
+          copyText(el.innerText, null, "Copied: " + el.innerText);
         });
       });
 
-      // Auto-close mobile drawer when an anchor link is tapped
+      // Mini copy buttons on skill cards
+      document.querySelectorAll(".cmd-copy-mini-btn").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var copyVal = btn.getAttribute("data-copy");
+          if (copyVal) copyText(copyVal, btn, "Copied prompt: " + copyVal);
+        });
+      });
+
+      // ==========================================
+      // 5. Skills Database for Modal Inspection
+      // ==========================================
+      var skillsData = {
+        "pipeline-failure-translator": {
+          id: "skills/pipeline-failure-translator",
+          title: "Pipeline Failure Translator",
+          category: "CI/CD & GitOps",
+          desc: "Analyzes Jenkins and GitHub Actions failure logs, pinpoints the failing stage and the exact error that matters in the noise, explains root causes in plain language, and suggests targeted remediation steps.",
+          points: [
+            "Parses multi-megabyte CI/CD log dumps down to the singular failure point",
+            "Clearly distinguishes observed errors from hypotheses",
+            "Supplies safe, read-only verification commands before making changes"
+          ],
+          prompt: 'hermes "Analyze GitHub Actions workflow failure in run #1482"',
+          response: "## Failing Stage\nJob: build / Step: 'Build and push image' (line 42)\n\n## Root Cause\nNo matching distribution for requests==2.99.0 (invalid pin in requirements.txt)\n\n## Verification [read-only]\npip index versions requests\n\n## Remediation [needs approval]\nUpdate requirements.txt to requests>=2.31.0",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/pipeline-failure-translator"
+        },
+        "kube-explain": {
+          id: "skills/kube-explain",
+          title: "KubeExplain",
+          category: "Kubernetes",
+          desc: "Explains common Kubernetes pod failure states — CrashLoopBackOff, ImagePullBackOff, Pending, and OOMKilled — from kubectl describe output, events, and container logs, then recommends the next most useful diagnostic command.",
+          points: [
+            "Decodes exit codes (137 OOMKilled, 139 Segfault, 127 Command Not Found)",
+            "Disambiguates container crash loops from scheduling memory/node selector constraints",
+            "Evidence-based troubleshooting based on cluster events, not speculative guesses"
+          ],
+          prompt: 'hermes "Why is payments-api pod in CrashLoopBackOff?"',
+          response: "## Pod Status Overview\npayments/payments-api-7d9f6c8b5 • Exit 137 (OOMKilled)\n\n## Root Cause\nApplication cache memory allocated 620MiB, exceeding 512Mi limit.\n\n## Next Diagnostic Step [read-only]\nkubectl logs payments-api-7d9f6c8b5 --previous -n payments\n\n## Recommended Fix [needs approval]\nRaise resources.limits.memory to 1Gi in deployment spec.",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/kube-explain"
+        },
+        "terraform-plan-explainer": {
+          id: "skills/terraform-plan-explainer",
+          title: "Terraform Plan Explainer",
+          category: "Cloud & Terraform",
+          desc: "Analyzes terraform plan output, flags destructive changes (-) and forced replacements (-/+), evaluates blast radius on persistent databases and networks, and recommends safe pre-apply verification checks.",
+          points: [
+            "Pinpoints exact '# forces replacement' attribute triggers",
+            "Protects stateful databases, storage buckets, and KMS keys from accidental deletion",
+            "Audits security group rule drops and open 0.0.0.0/0 ingress risks"
+          ],
+          prompt: 'hermes "Review terraform plan for staging database migration"',
+          response: "## High-Risk Operations\nmodule.db.aws_db_instance.postgres (-/+) REPLACED\n\n## Trigger\ndb_subnet_group_name change # forces replacement\n\n## Blast Radius\nDestroys 40GB RDS database instance; downtime and endpoint recreation.\n\n## Pre-Apply Check [read-only]\naws rds describe-db-snapshots --db-instance-identifier stage-postgres",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/terraform-plan-explainer"
+        },
+        "docker-cleanup-advisor": {
+          id: "skills/docker-cleanup-advisor",
+          title: "Docker Cleanup Advisor",
+          category: "Storage & FinOps",
+          desc: "Analyzes Docker storage breakdown from docker system df, prioritizing high-yield zero-risk build cache and dangling image reclamation while protecting persistent database volumes from blind pruning.",
+          points: [
+            "Reclaims 10GB–100GB+ without service disruption or rebuilding active layers",
+            "Guards named and persistent volumes from destructive prune loops",
+            "Tiered cleanup plan tailored to disk exhaustion severity"
+          ],
+          prompt: 'hermes "Runner disk is 98% full. What can I safely prune?"',
+          response: "## Storage Breakdown\nBuild Cache: 48.9GB reclaimable • Dangling Images: 38.1GB reclaimable\n\n## Prioritized Safe Cleanup [needs approval]\ndocker builder prune -f && docker image prune -f\n\n## Guardrail\nPreserved 2 active database volumes from destruction.",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/docker-cleanup-advisor"
+        },
+        "diskpressure-detective": {
+          id: "skills/diskpressure-detective",
+          title: "DiskPressure Detective",
+          category: "Kubernetes",
+          desc: "Diagnoses Kubernetes node DiskPressure=True conditions and ephemeral storage evictions. Differentiates root nodefs, runtime imagefs, and runaway pod container logs or temporary storage.",
+          points: [
+            "Differentiates nodefs vs imagefs threshold breaches and inode exhaustion",
+            "Pinpoints runaway unconstrained emptyDir volumes and container logs",
+            "Targeted read-only triage commands and ephemeral-storage limit guidelines"
+          ],
+          prompt: 'hermes "Diagnose node DiskPressure and pod evictions"',
+          response: "## Node Status\nworker-2 • DiskPressure: True • Taint: node.kubernetes.io/disk-pressure:NoSchedule\n\n## Root Cause\nPod analytics-worker exceeded ephemeral storage (consumed 48GB in emptyDir without sizeLimit).\n\n## Triage Check [read-only]\nkubectl describe node worker-2\n\n## Fix [needs approval]\nSet resources.limits.ephemeral-storage: '10Gi' on analytics pod.",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/diskpressure-detective"
+        },
+        "kubemanifest-doctor": {
+          id: "skills/kubemanifest-doctor",
+          title: "KubeManifest Doctor",
+          category: "Kubernetes",
+          desc: "Audits Kubernetes YAML manifests and Helm outputs for production readiness: flags missing CPU/memory limits, insecure root execution, probe anti-patterns, selector mismatches, and deprecated API versions.",
+          points: [
+            "Catches BestEffort QoS and missing resource requests/limits",
+            "Flags database dependencies inside liveness probes (cascading restart risk)",
+            "Detects deprecated APIs (networking.k8s.io/v1beta1) and Service selector mismatches"
+          ],
+          prompt: 'hermes "Audit deployment.yaml for security and resource limits"',
+          response: "## Critical Issues\n1. Running as root (missing securityContext.runAsNonRoot: true)\n2. Missing resources.limits.memory (BestEffort QoS eviction vulnerability)\n\n## Reliability Warning\nLiveness probe connects to external postgres database.\n\n## Recommended Patch\nSupplied concrete YAML securityContext and probe diff.",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/kubemanifest-doctor"
+        },
+        "gitops-drift-investigator": {
+          id: "skills/gitops-drift-investigator",
+          title: "GitOps Drift Investigator",
+          category: "CI/CD & GitOps",
+          desc: "Diagnoses GitOps reconciliation failures, perpetual out-of-sync drift, admission mutating webhook conflicts (Linkerd/Istio/Vault), and immutable field modification blocks across ArgoCD and Flux CD.",
+          points: [
+            "Resolves HPA and mutation webhook sync flapping loops",
+            "Identifies immutable field violations (StatefulSet volumeClaimTemplates, Deployment selectors)",
+            "Configures precise ignoreDifferences rules without resorting to destructive force-syncs"
+          ],
+          prompt: 'hermes "Why is my ArgoCD checkout app perpetually OutOfSync?"',
+          response: "## GitOps Application Status\ncheckout-service • Sync Status: OutOfSync • Health: Healthy\n\n## Root Cause\nHPA dynamically manages replicas: 7 in cluster vs replicas: 2 in Git. Linkerd webhook injects proxy sidecar.\n\n## Action\nRemove replicas from Git spec and add ignoreDifferences for linkerd-proxy in ArgoCD Application.",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/gitops-drift-investigator"
+        },
+        "service-failure-assistant": {
+          id: "skills/service-failure-assistant",
+          title: "Service Failure Assistant",
+          category: "Kubernetes",
+          desc: "Traces Kubernetes networking breakdowns, Ingress 502 Bad Gateway and 503 Service Unavailable errors, missing service endpoints (<none>), targetPort mismatches, and in-cluster CoreDNS timeouts.",
+          points: [
+            "End-to-end packet trace: Client -> Ingress -> Service -> Endpoints -> Pod -> Port",
+            "Detects label selector typos causing empty Endpoints and 502/503 errors",
+            "Diagnoses CoreDNS crashloops, upstream loop forwarding, and ndots:5 amplification"
+          ],
+          prompt: 'hermes "Ingress returns 502 Bad Gateway on /v1/payments"',
+          response: "## Failing Layer\nService Selector Typo • Endpoints: <none>\n\n## Root Cause\nService queries 'app=payment-processor' (singular), while running Pods have label 'app=payments-processor' (plural).\n\n## Triage Check [read-only]\nkubectl get endpoints payments-service -n payments\n\n## Instant Fix [needs approval]\nPatch Service selector to plural 'payments-processor'.",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/service-failure-assistant"
+        },
+        "cloud-cost-anomaly-explainer": {
+          id: "skills/cloud-cost-anomaly-explainer",
+          title: "Cloud Cost Anomaly Explainer",
+          category: "Storage & FinOps",
+          desc: "Analyzes sudden cloud billing spikes, NAT Gateway per-GB data processing surges, cross-AZ transfer fees, and orphaned storage assets (unattached EBS volumes, idle IPs) across AWS, GCP, and Azure.",
+          points: [
+            "Pinpoints NAT Gateway per-GB data processing charges ($0.045/GB)",
+            "Audits unattached EBS volumes in 'available' state and orphaned snapshot chains",
+            "Recommends free architectural fixes such as AWS S3 Gateway VPC Endpoints"
+          ],
+          prompt: 'hermes "Why did our AWS us-east-1 bill surge by $1,850 this week?"',
+          response: "## Anomaly Summary\nVPC NAT Gateway Data Processing: 42,800 GB @ $0.045/GB • Projected Run-Rate: $5,778/mo\n\n## Root Cause\nPrivate ML training pods downloading S3 objects via NAT Gateway instead of direct VPC route.\n\n## Free Remediation [needs approval]\nDeploy AWS S3 Gateway VPC Endpoint (100% free with $0 data fee).",
+          github: "https://github.com/NotHarshhaa/hermes-devops-toolkit/tree/main/skills/cloud-cost-anomaly-explainer"
+        }
+      };
+
+      // Modal handling
+      var modalBackdrop = document.getElementById("skill-modal");
+      var modalCloseBtn = document.getElementById("modal-close-btn");
+      var modalCopyPromptBtn = document.getElementById("modal-copy-prompt-btn");
+      var currentModalPrompt = "";
+
+      function openSkillModal(skillId) {
+        var data = skillsData[skillId];
+        if (!data || !modalBackdrop) return;
+
+        document.getElementById("modal-skill-id").textContent = data.id;
+        document.getElementById("modal-skill-title").textContent = data.title;
+        document.getElementById("modal-skill-desc").textContent = data.desc;
+        document.getElementById("modal-skill-prompt").textContent = data.prompt;
+        document.getElementById("modal-skill-response").textContent = data.response;
+        document.getElementById("modal-github-link").setAttribute("href", data.github);
+        currentModalPrompt = data.prompt;
+
+        var pointsUl = document.getElementById("modal-skill-points");
+        pointsUl.innerHTML = "";
+        data.points.forEach(function (pt) {
+          var li = document.createElement("li");
+          li.textContent = pt;
+          pointsUl.appendChild(li);
+        });
+
+        modalBackdrop.classList.add("open");
+        modalBackdrop.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSkillModal() {
+        if (!modalBackdrop) return;
+        modalBackdrop.classList.remove("open");
+        modalBackdrop.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".btn-inspect-skill").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var skillId = btn.getAttribute("data-skill-id");
+          openSkillModal(skillId);
+        });
+      });
+
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener("click", closeSkillModal);
+      }
+
+      if (modalBackdrop) {
+        modalBackdrop.addEventListener("click", function (e) {
+          if (e.target === modalBackdrop) closeSkillModal();
+        });
+      }
+
+      if (modalCopyPromptBtn) {
+        modalCopyPromptBtn.addEventListener("click", function () {
+          if (currentModalPrompt) {
+            copyText(currentModalPrompt, modalCopyPromptBtn, "Copied Hermes prompt!");
+          }
+        });
+      }
+
+      // ==========================================
+      // 6. Real-time Skill Filtering & Search
+      // ==========================================
+      var searchInput = document.getElementById("skill-search-input");
+      var filterPills = document.querySelectorAll(".filter-pill-btn");
+      var skillCards = document.querySelectorAll(".skill-card");
+      var emptyState = document.getElementById("skills-empty-state");
+      var countText = document.getElementById("skills-count-text");
+      var resetBtn = document.getElementById("btn-reset-filters");
+
+      var currentCat = "all";
+      var currentSearch = "";
+
+      function filterSkills() {
+        var visibleCount = 0;
+        var query = currentSearch.toLowerCase().trim();
+
+        skillCards.forEach(function (card) {
+          var cat = card.getAttribute("data-category") || "";
+          var id = card.getAttribute("data-id") || "";
+          var name = (card.getAttribute("data-name") || "").toLowerCase();
+          var cardText = card.innerText.toLowerCase();
+
+          var matchesCat = (currentCat === "all") || (cat === currentCat);
+          // Allow cloud to match storage as well if FinOps
+          if (currentCat === "cloud" && cat === "storage" && id.indexOf("cost") !== -1) matchesCat = true;
+          if (currentCat === "storage" && cat === "cloud" && id.indexOf("cost") !== -1) matchesCat = true;
+
+          var matchesSearch = !query || name.indexOf(query) !== -1 || id.indexOf(query) !== -1 || cardText.indexOf(query) !== -1;
+
+          if (matchesCat && matchesSearch) {
+            card.classList.remove("is-hidden");
+            visibleCount++;
+          } else {
+            card.classList.add("is-hidden");
+          }
+        });
+
+        if (countText) {
+          countText.textContent = "Showing " + visibleCount + " of " + skillCards.length + " skills";
+        }
+
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.add("active");
+          } else {
+            emptyState.classList.remove("active");
+          }
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", function (e) {
+          currentSearch = e.target.value;
+          filterSkills();
+        });
+      }
+
+      filterPills.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          filterPills.forEach(function (b) {
+            b.classList.remove("active");
+            b.setAttribute("aria-selected", "false");
+          });
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+          currentCat = btn.getAttribute("data-cat") || "all";
+          filterSkills();
+        });
+      });
+
+      if (resetBtn) {
+        resetBtn.addEventListener("click", function () {
+          if (searchInput) searchInput.value = "";
+          currentSearch = "";
+          currentCat = "all";
+          filterPills.forEach(function (b) {
+            b.classList.toggle("active", b.getAttribute("data-cat") === "all");
+            b.setAttribute("aria-selected", b.getAttribute("data-cat") === "all");
+          });
+          filterSkills();
+        });
+      }
+
+      // Shortcut: "/" to focus search; "Esc" to close modal or clear search
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "/" && document.activeElement !== searchInput) {
+          e.preventDefault();
+          if (searchInput) searchInput.focus();
+        } else if (e.key === "Escape") {
+          if (modalBackdrop && modalBackdrop.classList.contains("open")) {
+            closeSkillModal();
+          } else if (searchInput && searchInput.value) {
+            searchInput.value = "";
+            currentSearch = "";
+            filterSkills();
+          }
+        }
+      });
+
+      // ==========================================
+      // 7. Interactive Diagnostic Simulator Playground
+      // ==========================================
+      var simScenarios = {
+        "sim-ingress": {
+          title: "Ingress 502 Bad Gateway • Missing Endpoints",
+          subtitle: "Kubernetes traffic path analysis: Ingress -> Service -> Endpoints -> Pod",
+          format: "ingress log + kubectl describe",
+          skill: "service-failure-assistant",
+          log: "[warn] [ngx_http_ingress_module] no endpoints available for service 'payments/payments-service'\n2026/11/20 14:22:01 [error] connect() failed (61: Connection refused) while connecting to upstream\n\nName:        payments-service\nSelector:    app=payment-processor\nEndpoints:   <none>\n\nPods:\npayments-deploy-57d89b6574-2xk8q  1/1  Running  Labels: app=payments-processor",
+          stage1: "Sanitized credentials & internal cluster endpoints. Zero secrets exposed.",
+          stage2Tag: "service-failure-assistant",
+          stage2: "Loaded packet-trace instructions to verify Service Endpoints and Port routing.",
+          stage3Badge: "Root Cause Identified",
+          stage3: "Selector mismatch: Service requests 'app=payment-processor', but Pods carry 'app=payments-processor'. Endpoints evaluates to <none>.",
+          stage4: "Run read-only check: kubectl get endpoints payments-service -n payments. Patch Service selector to restore live traffic."
+        },
+        "sim-oom": {
+          title: "Pod CrashLoopBackOff • Memory Exhaustion",
+          subtitle: "Decoding Linux exit code 137 and kubelet OOMKilled events",
+          format: "kubectl describe pod",
+          skill: "kube-explain",
+          log: "State:          Waiting\n  Reason:       CrashLoopBackOff\nLast State:     Terminated\n  Reason:       OOMKilled\n  Exit Code:    137\n  Started:      Fri, 20 Nov 2026 14:02:11 +0000\n  Finished:     Fri, 20 Nov 2026 14:08:44 +0000\nLimits:\n  memory:  512Mi",
+          stage1: "Verified pod describe output. Sanitized environment variables and token mounts.",
+          stage2Tag: "kube-explain",
+          stage2: "Loaded pod failure state machine: CrashLoopBackOff + Exit Code 137 analysis.",
+          stage3Badge: "OOMKilled Confirmed",
+          stage3: "Container exceeded 512Mi memory boundary. Linux kernel killed process with SIGKILL (128 + 9 = 137).",
+          stage4: "Inspect previous crash dump: kubectl logs <pod> --previous. Raise memory limit to 1Gi or tune JVM/Go GC."
+        },
+        "sim-gitops": {
+          title: "ArgoCD GitOps Flapping • Mutating Webhook Conflict",
+          subtitle: "Resolving perpetual OutOfSync drift between Git and live controllers",
+          format: "argocd app diff",
+          skill: "gitops-drift-investigator",
+          log: "===== apps/Deployment payments/checkout-api ======\n8c8\n<     replicas: 2\n---\n>     replicas: 7\n16c16,19\n>       - name: linkerd-proxy\n>         image: cr.l5d.io/linkerd/proxy:stable-2.14.0",
+          stage1: "Sanitized repo URL and internal Kubernetes cluster endpoints.",
+          stage2Tag: "gitops-drift-investigator",
+          stage2: "Evaluating controller mutation: Linkerd admission webhook and HPA autoscaler.",
+          stage3Badge: "Mutation Loop",
+          stage3: "HPA scales cluster to 7 replicas while Git specifies 2. Linkerd injects proxy container into pod spec on admission.",
+          stage4: "Do NOT force delete! Remove 'replicas' from Git Deployment and configure ignoreDifferences in ArgoCD Application."
+        },
+        "sim-nat": {
+          title: "AWS NAT Gateway $1,850 Data Transfer Surge",
+          subtitle: "Diagnosing hidden cloud egress fees and VPC routing traps",
+          format: "AWS Cost Explorer + CloudWatch",
+          skill: "cloud-cost-anomaly-explainer",
+          log: "Usage Type: USE1-NatGateway-Bytes (42,800 GB)\nCost (10 Days): $1,926.00 • Projected: $5,778.00/mo\nCloudWatch BytesOutToDestination: 49.5 MB/s -> s3.us-east-1.amazonaws.com",
+          stage1: "Sanitized AWS Account ID and internal VPC CIDR ranges.",
+          stage2Tag: "cloud-cost-anomaly-explainer",
+          stage2: "Triggered cloud network transfer audit and AWS VPC cost-driver attribution.",
+          stage3Badge: "Hidden Egress Trap",
+          stage3: "Private ML training pods are routing S3 downloads through NAT Gateway ($0.045/GB) instead of a direct VPC route.",
+          stage4: "Deploy an AWS S3 Gateway VPC Endpoint. It is 100% free with $0 data processing fee, saving $5,700+/mo."
+        },
+        "sim-tf": {
+          title: "Terraform RDS Force Replacement Blast Radius",
+          subtitle: "Pre-apply safety checks for destructive cloud infrastructure updates",
+          format: "terraform plan output",
+          skill: "terraform-plan-explainer",
+          log: "# module.db.aws_db_instance.postgres will be replaced\n-/+ resource \"aws_db_instance\" \"postgres\" {\n      ~ db_subnet_group_name = \"vpc-old\" -> \"vpc-new\" # forces replacement\n      ~ id                    = \"db-XYZ\" -> (known after apply)\n    }\nPlan: 1 to add, 0 to change, 1 to destroy.",
+          stage1: "Redacted database master credentials and internal AWS KMS key ARNs.",
+          stage2Tag: "terraform-plan-explainer",
+          stage2: "Scan for destructive operations (- and -/+) and stateful resource boundaries.",
+          stage3Badge: "CRITICAL BLAST RADIUS",
+          stage3: "Subnet group update triggers '# forces replacement'. Running apply will DESTROY the 40GB live production RDS database.",
+          stage4: "Enforce safety check: aws rds describe-db-snapshots. Add lifecycle { prevent_destroy = true } before apply."
+        },
+        "sim-docker": {
+          title: "CI Runner 98% Disk Space Crisis",
+          subtitle: "Safe prioritized Docker storage reclamation without data loss",
+          format: "docker system df",
+          skill: "docker-cleanup-advisor",
+          log: "TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE\nImages          84        6         42.5GB    38.1GB (89%)\nLocal Volumes   3         2         450MB     120MB (26%)\nBuild Cache     412       18        51.8GB    48.9GB (94%)",
+          stage1: "Audited runner environment and volume tags.",
+          stage2Tag: "docker-cleanup-advisor",
+          stage2: "Loaded storage tiering rules: distinguish build cache from mounted volumes.",
+          stage3Badge: "87GB Reclaimable",
+          stage3: "Buildx cache (48.9GB) and untagged images (38.1GB) consume 90GB. Active volumes must NOT be pruned blindly.",
+          stage4: "Run: docker builder prune -f && docker image prune -f. Reclaims ~87GB safely while preserving active runner caches."
+        }
+      };
+
+      var simButtons = document.querySelectorAll(".scenario-btn");
+      var simTitle = document.getElementById("sim-scenario-title");
+      var simSub = document.getElementById("sim-scenario-sub");
+      var simLogView = document.getElementById("sim-log-view");
+      var simInputFormat = document.getElementById("sim-input-format");
+      var simSkillMatched = document.getElementById("sim-skill-matched");
+      var stage1Text = document.getElementById("stage-1-text");
+      var stage2Tag = document.getElementById("stage-2-tag");
+      var stage2Text = document.getElementById("stage-2-text");
+      var stage3Badge = document.getElementById("stage-3-badge");
+      var stage3Text = document.getElementById("stage-3-text");
+      var stage4Text = document.getElementById("stage-4-text");
+      var btnRunSim = document.getElementById("btn-run-simulation");
+
+      function loadSimulationScenario(key) {
+        var sc = simScenarios[key];
+        if (!sc) return;
+
+        simTitle.textContent = sc.title;
+        simSub.textContent = sc.subtitle;
+        simLogView.textContent = sc.log;
+        simInputFormat.textContent = sc.format;
+        simSkillMatched.textContent = "skill: " + sc.skill;
+        stage1Text.textContent = sc.stage1;
+        stage2Tag.textContent = sc.stage2Tag;
+        stage2Text.textContent = sc.stage2;
+        stage3Badge.textContent = sc.stage3Badge;
+        stage3Text.textContent = sc.stage3;
+        stage4Text.textContent = sc.stage4;
+
+        // Reset stage highlights
+        document.querySelectorAll(".stage-step-card").forEach(function (card, idx) {
+          card.classList.toggle("active-stage", idx === 0);
+        });
+      }
+
+      simButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          simButtons.forEach(function (b) {
+            b.classList.remove("active");
+            b.setAttribute("aria-selected", "false");
+          });
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+          var simKey = btn.getAttribute("data-sim");
+          loadSimulationScenario(simKey);
+        });
+      });
+
+      // Initialize first scenario
+      loadSimulationScenario("sim-ingress");
+
+      if (btnRunSim) {
+        btnRunSim.addEventListener("click", function () {
+          btnRunSim.disabled = true;
+          btnRunSim.textContent = "Running Diagnosis...";
+          var stages = [
+            document.getElementById("stage-1"),
+            document.getElementById("stage-2"),
+            document.getElementById("stage-3"),
+            document.getElementById("stage-4")
+          ];
+
+          stages.forEach(function (s) { if (s) s.classList.remove("active-stage"); });
+
+          var i = 0;
+          function nextStage() {
+            if (i < stages.length) {
+              if (stages[i]) stages[i].classList.add("active-stage");
+              i++;
+              setTimeout(nextStage, 400);
+            } else {
+              btnRunSim.disabled = false;
+              btnRunSim.textContent = "▶ Re-run Diagnostic";
+              showToast("Diagnostic completed with verified read-only guardrails!");
+            }
+          }
+          nextStage();
+        });
+      }
+
+      // ==========================================
+      // 8. Interactive Custom Install Command Builder
+      // ==========================================
+      var selectAllBtn = document.getElementById("btn-select-all-skills");
+      var clearAllBtn = document.getElementById("btn-clear-all-skills");
+      var checkboxes = document.querySelectorAll("#install-checkboxes-container input[type='checkbox']");
+
+      var codeMacos = document.getElementById("code-macos");
+      var codeLinux = document.getElementById("code-linux");
+      var codeWindows = document.getElementById("code-windows");
+
+      function updateInstallSnippets() {
+        var selected = [];
+        checkboxes.forEach(function (cb) {
+          if (cb.checked) selected.push(cb.value);
+        });
+
+        var count = selected.length;
+        var macLinuxCopy = (count === checkboxes.length) ? "cp -r skills/* ~/.hermes/skills/" :
+                           (count === 0) ? "# Select at least one skill above" :
+                           "cp -r " + selected.map(function(s){ return "skills/" + s; }).join(" ") + " ~/.hermes/skills/";
+
+        var winCopy = (count === checkboxes.length) ? "Copy-Item -Recurse -Force skills\\* \"$HOME\\.hermes\\skills\\\"" :
+                      (count === 0) ? "# Select at least one skill above" :
+                      selected.map(function(s){ return "Copy-Item -Recurse -Force skills\\" + s + " \"$HOME\\.hermes\\skills\\\""; }).join("\n");
+
+        if (codeMacos) {
+          codeMacos.innerHTML = '<span class="t-comment"># 1. Clone the hermes-devops-toolkit repository</span>\n' +
+                                '<span class="t-prompt">$</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git\n' +
+                                '<span class="t-prompt">$</span> cd hermes-devops-toolkit\n\n' +
+                                '<span class="t-comment"># 2. Copy selected skills into Hermes skills directory</span>\n' +
+                                '<span class="t-prompt">$</span> mkdir -p ~/.hermes/skills\n' +
+                                '<span class="t-prompt">$</span> ' + macLinuxCopy + '\n\n' +
+                                '<span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>\n' +
+                                '<span class="t-prompt">$</span> hermes skills list\n' +
+                                '<span class="t-ok">✓ Loaded ' + count + ' skills ready for use!</span>';
+        }
+
+        if (codeLinux) {
+          codeLinux.innerHTML = '<span class="t-comment"># 1. Clone the hermes-devops-toolkit repository</span>\n' +
+                                '<span class="t-prompt">$</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git\n' +
+                                '<span class="t-prompt">$</span> cd hermes-devops-toolkit\n\n' +
+                                '<span class="t-comment"># 2. Copy selected skills into Hermes skills directory</span>\n' +
+                                '<span class="t-prompt">$</span> mkdir -p ~/.hermes/skills\n' +
+                                '<span class="t-prompt">$</span> ' + macLinuxCopy + '\n\n' +
+                                '<span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>\n' +
+                                '<span class="t-prompt">$</span> hermes skills list\n' +
+                                '<span class="t-ok">✓ Loaded ' + count + ' skills ready for use!</span>';
+        }
+
+        if (codeWindows) {
+          codeWindows.innerHTML = '<span class="t-comment"># 1. Clone the hermes-devops-toolkit repository (PowerShell)</span>\n' +
+                                  '<span class="t-prompt">&gt;</span> git clone https://github.com/NotHarshhaa/hermes-devops-toolkit.git\n' +
+                                  '<span class="t-prompt">&gt;</span> cd hermes-devops-toolkit\n\n' +
+                                  '<span class="t-comment"># 2. Copy selected skills to Hermes user directory</span>\n' +
+                                  '<span class="t-prompt">&gt;</span> New-Item -ItemType Directory -Force -Path "$HOME\\.hermes\\skills"\n' +
+                                  '<span class="t-prompt">&gt;</span> ' + winCopy + '\n\n' +
+                                  '<span class="t-comment"># 3. Verify installed DevOps skills in Hermes</span>\n' +
+                                  '<span class="t-prompt">&gt;</span> hermes skills list\n' +
+                                  '<span class="t-ok">✓ Loaded ' + count + ' skills ready for use!</span>';
+        }
+      }
+
+      checkboxes.forEach(function (cb) {
+        cb.addEventListener("change", updateInstallSnippets);
+      });
+
+      if (selectAllBtn) {
+        selectAllBtn.addEventListener("click", function () {
+          checkboxes.forEach(function (cb) { cb.checked = true; });
+          updateInstallSnippets();
+          showToast("Selected all 9 skills");
+        });
+      }
+
+      if (clearAllBtn) {
+        clearAllBtn.addEventListener("click", function () {
+          checkboxes.forEach(function (cb) { cb.checked = false; });
+          updateInstallSnippets();
+          showToast("Cleared skill selection");
+        });
+      }
+
+      // ==========================================
+      // 9. Generic Terminal Copy Buttons
+      // ==========================================
+      document.querySelectorAll(".terminal").forEach(function (term) {
+        var bar = term.querySelector(".terminal-bar");
+        if (!bar) return;
+
+        var panels = term.querySelectorAll(".tab-panel");
+        var heroSc = term.querySelectorAll(".hero-scenario");
+
+        if (heroSc.length > 0) {
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "copy-btn";
+          btn.textContent = "Copy";
+          btn.addEventListener("click", function () {
+            var activeSc = term.querySelector(".hero-scenario.active");
+            copyText(activeSc ? activeSc.innerText : term.innerText, btn, "Scenario copied!");
+          });
+          bar.appendChild(btn);
+        } else if (panels.length > 0) {
+          var btnP = document.createElement("button");
+          btnP.type = "button";
+          btnP.className = "copy-btn";
+          btnP.textContent = "Copy";
+          btnP.addEventListener("click", function () {
+            for (var i = 0; i < panels.length; i++) {
+              if (panels[i].offsetParent !== null || window.getComputedStyle(panels[i]).display !== "none") {
+                copyText(panels[i].innerText, btnP, "Install commands copied!");
+                return;
+              }
+            }
+            copyText(panels[0].innerText, btnP, "Install commands copied!");
+          });
+          bar.appendChild(btnP);
+        }
+      });
+
+      // Mobile nav drawer auto-close
       var navToggle = document.getElementById("nav-toggle");
       if (navToggle) {
         document.querySelectorAll(".site-nav a").forEach(function (link) {

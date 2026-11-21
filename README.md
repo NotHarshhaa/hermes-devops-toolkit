@@ -25,7 +25,7 @@ This toolkit tackles these with small, focused skills that can be developed, tes
 
 ## Skills
 
-The toolkit currently ships six skills.
+The toolkit currently ships nine skills.
 
 | Skill | Description | Status |
 |---|---|---|
@@ -35,6 +35,9 @@ The toolkit currently ships six skills.
 | Docker Cleanup Advisor | Recommends prioritized, safe Docker disk space reclamation without data loss. | Implemented |
 | DiskPressure Detective | Diagnoses Kubernetes node DiskPressure, eviction thresholds, and storage leaks. | Implemented |
 | KubeManifest Doctor | Audits Kubernetes YAML manifests for security issues, resource limits, and deprecated APIs. | Implemented |
+| GitOps Drift Investigator | Diagnoses ArgoCD/Flux sync errors, mutating webhook conflicts, and reconciliation failures. | Implemented |
+| Service Failure Assistant | Diagnoses Kubernetes networking, Ingress 502/503 errors, missing endpoints, and CoreDNS timeouts. | Implemented |
+| Cloud Cost Anomaly Explainer | Analyzes cloud billing spikes, NAT Gateway data surges, and orphaned storage waste across AWS/GCP/Azure. | Implemented |
 
 *Statuses will be updated as each skill is tested and released.*
 
@@ -122,6 +125,46 @@ Capabilities:
 
 Example use case: a team deploys a new service that fails to receive traffic. The skill catches a mismatched label selector in the Service and flags a flawed liveness probe that queries PostgreSQL.
 
+### 7. GitOps Drift Investigator
+
+**Diagnose GitOps sync failures, mutating webhook flapping, and immutable field blocks across ArgoCD and Flux.**
+
+Capabilities:
+
+- Differentiate legitimate drift from in-cluster mutating webhook conflicts (e.g., Linkerd/Istio sidecars, Vault agents, HPA replicas).
+- Catch immutable field update rejections (e.g., `volumeClaimTemplates` on StatefulSets, `spec.selector` on Deployments).
+- Detect missing CRDs, webhook timeout errors, and failing PreSync/PostSync hooks.
+- Recommend targeted `ignoreDifferences` rules or safe zero-downtime recreation strategies without risking storage loss.
+
+Example use case: an ArgoCD application flaps continuously between `Synced` and `OutOfSync`. The skill identifies an active HPA scaling replicas while Git hardcodes `replicas: 2`, and supplies the exact `ignoreDifferences` snippet.
+
+### 8. Service Failure Assistant
+
+**Trace Kubernetes networking breakdowns, Ingress 502/503 errors, and CoreDNS timeouts down to the exact layer.**
+
+Capabilities:
+
+- Follow the packet path: Client -> Ingress -> Service -> Endpoints -> Pod.
+- Detect missing Service endpoints (`Endpoints: <none>`) caused by label selector typos or unready pods.
+- Disambiguate Ingress 502 Bad Gateway (upstream connection refused/reset) from 503 Service Unavailable (no backend endpoints).
+- Diagnose CoreDNS lookup timeouts, crash loops, upstream loop forwarding, and `ndots:5` amplification.
+- Audit NetworkPolicy blocks and targetPort configuration errors.
+
+Example use case: an Ingress controller starts throwing 502 Bad Gateway after a release. The skill detects that the Service selector specifies `app=payment-processor` while the new pods use `app=payments-processor`, leaving endpoints empty.
+
+### 9. Cloud Cost Anomaly Explainer
+
+**Explain sudden cloud bill spikes, NAT Gateway data transfer surges, and orphaned storage waste across AWS, GCP, and Azure.**
+
+Capabilities:
+
+- Pinpoint the exact root causes behind sudden cost surges (e.g., NAT Gateway per-GB processing fees vs compute uptime).
+- Identify hidden data transfer traps, such as pods pulling from S3 through NAT Gateways instead of free S3 Gateway Endpoints.
+- Detect orphaned storage assets (unattached EBS volumes in `available` state, abandoned snapshot chains, idle static IPs).
+- Calculate financial run-rates ($/month) and prioritize high-yield, zero-risk architectural fixes.
+
+Example use case: an AWS bill surges by $1,800 due to NAT Gateway transfer fees. The skill identifies ML training pods reading S3 across the NAT Gateway and provides the exact commands to provision a free S3 Gateway VPC Endpoint.
+
 ## Design Principles
 
 - **Small and focused:** each skill solves one specific engineering problem.
@@ -166,12 +209,11 @@ In the meantime, see the official [Hermes Agent documentation](https://hermes-ag
 
 Possible additions, subject to community interest and available time:
 
-- ServiceFailure Assistant
 - Cloud Configuration Troubleshooter
 - Ansible Failure Analyzer
 - Container Build Failure Assistant
-- GitOps Drift Investigator
-- Cloud Cost Anomaly Explainer
+- SSL/TLS Certificate Expiry & Renewal Diagnoser
+- Database Connection Pool Starvation Analyzer
 
 These are ideas for exploration, not committed features.
 
